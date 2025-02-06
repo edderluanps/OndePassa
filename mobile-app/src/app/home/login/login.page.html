@@ -1,0 +1,11 @@
+<ion-content [fullscreen]="true">
+  <div class="content">
+    <ion-input label="Email" labelPlacement="floating" placeholder="Digite seu email"></ion-input>
+    <ion-input label="Senha" labelPlacement="floating" placeholder="Digite sua senha">
+      <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+    </ion-input>
+    <ion-button color="success" size="large" (click)="goToDashboard()">Login</ion-button>
+    <ion-button color="danger" size="large" (click)="goToSignup()">Sair</ion-button>
+    <p>v1.0.0</p>
+  </div>
+</ion-content>

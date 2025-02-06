@@ -1,27 +1,31 @@
-#container {
-  text-align: center;
+ion-content{
+  height: 100%;
+  width: 100%;
 
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-}
+  .content{
+    background: #FFF;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
-}
+    img{
+      height: 200px;
+      width: 200px;
+      margin-bottom: 50px;
+    }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
+    ion-button{
+      width: 70%;
+      margin-bottom: 15px;
+    }
 
-  color: #8c8c8c;
-
-  margin: 0;
-}
-
-#container a {
-  text-decoration: none;
+    p{
+      color: #000;
+      position: absolute;
+      bottom: 0;
+    }
+  }
 }
