@@ -22,10 +22,35 @@
     </ion-toolbar>
   </ion-header>
   <ion-content class="ion-padding">
-    <h1>Tap the button in the toolbar to open the menu.</h1>
-    
+    <h3>Ao vivo</h3>
+    <swiper-container
+      (slidechange)="swiperSlideChanged($event)"
+      [loop]="true"
+      [pagination]="true"
+      [autoplay]="true"
+      navigation-next-el=".swiper-button-next"
+      navigation-prev-el=".swiper-button-prev"
+    >
+      <swiper-slide>Slide 1</swiper-slide>
+      <swiper-slide>Slide 2</swiper-slide>
+      <swiper-slide>Slide 3</swiper-slide>
+    </swiper-container>
+
+    <ion-button class="swiper-button-prev" color="transparent" fill="clear">
+      <ion-icon name="chevron-back-outline"></ion-icon>
+    </ion-button>
+
+    <ion-button class="swiper-button-next" color="transparent" fill="clear">
+      <ion-icon name="chevron-forward-outline"></ion-icon>
+    </ion-button>
+
+    <h3>Eventos</h3>
+    <div class="cards">
+      <ion-card></ion-card>
+      <ion-card></ion-card>
+      <ion-card></ion-card>
+    </div>
   </ion-content>
-  
 </div>
 
 <ion-footer>
@@ -42,4 +67,3 @@
     <ion-icon name="person-outline"></ion-icon>
   </ion-button>
 </ion-footer>
-

@@ -3,22 +3,31 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonMenu, IonMenuButton, IonHeader, IonTitle, IonToolbar, IonButtons, IonFooter, IonIcon, IonButton } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { logoIonic, homeOutline, footballOutline, calendarOutline, personOutline, notificationsOutline } from 'ionicons/icons';
+import { logoIonic, homeOutline, footballOutline, calendarOutline, personOutline, notificationsOutline, chevronBackOutline, chevronForwardOutline } from 'ionicons/icons';
+import { register } from 'swiper/element/bundle';
+register();
+
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.page.html',
   styleUrls: ['./dashboard.page.scss'],
   standalone: true,
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [IonButton, IonIcon, IonButtons, IonMenu, IonMenuButton, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonFooter]
 })
 export class DashboardPage implements OnInit {
 
   constructor() {
-    addIcons({notificationsOutline,homeOutline,footballOutline,calendarOutline,personOutline,logoIonic});
+    addIcons({notificationsOutline,chevronBackOutline,chevronForwardOutline,homeOutline,footballOutline,calendarOutline,personOutline,logoIonic});
   }
 
   ngOnInit() {
+  }
+
+  swiperSlideChanged(e: any) {
+    console.log('changed: ', e);
   }
 
 }
