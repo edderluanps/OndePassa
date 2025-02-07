@@ -26,8 +26,4 @@ export class DashboardPage implements OnInit {
   ngOnInit() {
   }
 
-  swiperSlideChanged(e: any) {
-    console.log('changed: ', e);
-  }
-
 }

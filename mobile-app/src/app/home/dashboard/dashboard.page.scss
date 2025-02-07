@@ -11,6 +11,29 @@
     }
 }
 
+ion-menu ion-header ion-toolbar {
+    background: #006f6f !important;
+    --background: #006f6f !important;
+}
+
+.menu {
+    background: #008B8B;
+    height: 100%;
+    width: 100%;
+    color: #FFF;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    ion-button{
+        width: 100%;
+        height: 50px;
+        margin: 0;
+        color: #FFF;
+    }
+}
+
 .notification-button {
     margin-right: 15px;
     ion-icon {

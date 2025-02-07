@@ -1,10 +1,19 @@
 <ion-menu contentId="main-content">
   <ion-header>
     <ion-toolbar>
-      <ion-title>Menu Content</ion-title>
+      <ion-title>Menu</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-content class="ion-padding">This is the menu content.</ion-content>
+  <ion-content>
+    <div class="menu">
+      <ion-button expand="full" size="big" color="transparent">Eventos</ion-button>
+      <ion-button expand="full" size="big" color="transparent">Datas</ion-button>
+      <ion-button expand="full" size="big" color="transparent">Favoritos</ion-button>
+      <ion-button expand="full" size="big" color="transparent">Recentemente</ion-button>
+      <ion-button expand="full" size="big" color="transparent">Preferencias</ion-button>
+      <ion-button expand="full" size="big" color="transparent">Meu Perfil</ion-button>
+    </div>
+  </ion-content>
 </ion-menu>
 
 <div class="ion-page" id="main-content">
@@ -24,7 +33,6 @@
   <ion-content class="ion-padding">
     <h3>Ao vivo</h3>
     <swiper-container
-      (slidechange)="swiperSlideChanged($event)"
       [loop]="true"
       [pagination]="true"
       [autoplay]="true"
