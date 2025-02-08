@@ -1,0 +1,146 @@
+.ion-page {
+  height: 100%;
+  width: 100%;
+  background: #fff !important;
+
+  ion-header {
+    ion-toolbar {
+      background: #008b8b !important;
+      --background: #008b8b !important;
+    }
+  }
+}
+
+ion-menu ion-header ion-toolbar {
+  background: #006f6f !important;
+  --background: #006f6f !important;
+}
+
+.menu {
+  background: #008b8b;
+  height: 100%;
+  width: 100%;
+  color: #fff;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  ion-button {
+    width: 100%;
+    height: 50px;
+    margin: 0;
+    color: #fff;
+  }
+}
+
+.notification-button {
+  margin-right: 15px;
+  ion-icon {
+    font-size: 24px;
+    color: #fff;
+  }
+}
+
+ion-content {
+  --ion-background-color: #fff;
+  --color: #000;
+  height: 100%;
+  min-height: 100vh;
+
+  ion-icon{
+    margin: 0 10px;
+  }
+
+  .title {
+    height: 10px;
+    display: flex;
+    justify-content: start;
+    padding-right: 40px;
+    align-items: center;
+    font-size: 18px;
+    margin: 50px 0 20px;
+  }
+}
+
+ion-list.itens {
+  --background: #fff;
+  --border-color: transparent;
+  padding: 0;
+  margin: 0;
+}
+
+ion-item {
+  --background: #d9d9d9;
+  --color: black;
+  --border-color: transparent;
+  --inner-border-width: 0;
+  --border-width: 0;
+  --box-shadow: none;
+  --highlight-background: transparent;
+
+  margin-bottom: 0;
+  padding: 0;
+  --separator: none;
+}
+
+ion-list > ion-item + ion-list {
+  --background: #fff;
+  padding: 0;
+  margin: 0;
+}
+
+ion-list > ion-item + ion-list > ion-item {
+  --background: #f9f9f9;
+  --color: #000;
+  --border-color: transparent;
+  --inner-border-width: 0;
+  --box-shadow: none;
+  margin: 0;
+  padding-left: 0;
+}
+
+#icon {
+  padding-right: 10px;
+}
+
+ion-label {
+  color: #000;
+}
+
+ion-icon {
+  color: #000;
+  font-size: 18px;
+}
+
+ion-item:hover {
+  --background: #d9d9d9;
+}
+
+ion-footer {
+  height: 60px;
+  width: 100%;
+  background: #008b8b;
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  flex-direction: row;
+
+  ion-toolbar {
+    --background: #008b8b !important;
+  }
+
+  ion-button {
+    height: 100%;
+    width: 25%;
+    border: 0;
+    margin: 0;
+    padding: 0;
+
+    ion-icon {
+      height: 70%;
+      width: 70%;
+      color: #fff;
+    }
+  }
+}

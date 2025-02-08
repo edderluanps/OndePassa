@@ -35,7 +35,7 @@
     <swiper-container
       [loop]="true"
       [pagination]="true"
-      [autoplay]="true"
+      [autoplay]="{ delay: 1000, disableOnInteraction: false }"
       navigation-next-el=".swiper-button-next"
       navigation-prev-el=".swiper-button-prev"
     >
@@ -62,10 +62,10 @@
 </div>
 
 <ion-footer>
-  <ion-button color="transparent" slot="icon-only" fill="clear">
+  <ion-button color="transparent" slot="icon-only" fill="clear" (click)="goToDashboard()">
     <ion-icon name="home-outline"></ion-icon>
   </ion-button>
-  <ion-button color="transparent" slot="icon-only" fill="clear">
+  <ion-button color="transparent" slot="icon-only" fill="clear" (click)="goToListEvents()">
     <ion-icon name="football-outline"></ion-icon>
   </ion-button>
   <ion-button color="transparent" slot="icon-only" fill="clear">

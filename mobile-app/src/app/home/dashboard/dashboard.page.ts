@@ -8,6 +8,7 @@ import { register } from 'swiper/element/bundle';
 register();
 
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,11 +20,19 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 })
 export class DashboardPage implements OnInit {
 
-  constructor() {
+  constructor(public router : Router) {
     addIcons({notificationsOutline,chevronBackOutline,chevronForwardOutline,homeOutline,footballOutline,calendarOutline,personOutline,logoIonic});
   }
 
   ngOnInit() {
+  }
+
+  goToDashboard(){
+    this.router.navigate(['/dashboard']);
+  }
+
+  goToListEvents(){
+    this.router.navigate(['/listagem-eventos']);
   }
 
 }

@@ -17,5 +17,13 @@ export const routes: Routes = [
   {
     path: 'dashboard',
     loadComponent: () => import('./home/dashboard/dashboard.page').then( m => m.DashboardPage)
+  },
+  {
+    path: 'listagem-eventos',
+    loadComponent: () => import('./home/listagem-eventos/listagem-eventos.page').then( m => m.ListagemEventosPage)
+  },
+  {
+    path: 'evento',
+    loadComponent: () => import('./home/listagem-eventos/evento/evento.page').then( m => m.EventoPage)
   }
 ];

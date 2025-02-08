@@ -1,0 +1,89 @@
+<ion-menu contentId="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <div class="menu">
+      <ion-button expand="full" size="big" color="transparent">Eventos</ion-button>
+      <ion-button expand="full" size="big" color="transparent">Datas</ion-button>
+      <ion-button expand="full" size="big" color="transparent">Favoritos</ion-button>
+      <ion-button expand="full" size="big" color="transparent">Recentemente</ion-button>
+      <ion-button expand="full" size="big" color="transparent">Preferencias</ion-button>
+      <ion-button expand="full" size="big" color="transparent">Meu Perfil</ion-button>
+    </div>
+  </ion-content>
+</ion-menu>
+
+<div class="ion-page" id="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Eventos</ion-title>
+      <ion-buttons slot="end">
+        <ion-button class="notification-button">
+          <ion-icon name="notifications-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <strong class="title"> <ion-icon name="calendar-clear"></ion-icon> Eventos em {{ currentDate }}</strong>
+      
+    <ion-list class="itens">
+
+        <ion-item button (click)="toggleDropdown(1)">
+          <ion-icon name="football-outline" id="icon"></ion-icon>
+          <ion-label><strong>England Premier League</strong></ion-label>
+          <ion-icon slot="end" [name]="isDropdownOpen(1) ? 'chevron-up-outline' : 'chevron-down-outline'"></ion-icon>
+        </ion-item>
+
+        <ion-list *ngIf="isDropdownOpen(1)">
+          <ion-item (click)="goToEvent()">Detalhe do Evento 1</ion-item>
+          <ion-item (click)="goToEvent()">Detalhe do Evento 2</ion-item>
+        </ion-list>
+      
+        <ion-item button (click)="toggleDropdown(2)">
+          <ion-icon name="football-outline" id="icon"></ion-icon>
+          <ion-label><strong>Italian Serie A Tim</strong></ion-label>
+          <ion-icon slot="end" [name]="isDropdownOpen(2) ? 'chevron-up-outline' : 'chevron-down-outline'"></ion-icon>
+        </ion-item>
+        
+        <ion-list *ngIf="isDropdownOpen(2)">
+          <ion-item>Detalhe do Evento 3</ion-item>
+          <ion-item>Detalhe do Evento 4</ion-item>
+        </ion-list>
+      
+        <ion-item button (click)="toggleDropdown(3)">
+          <ion-icon name="football-outline" id="icon"></ion-icon>
+          <ion-label><strong>Spain LaLiga</strong></ion-label>
+          <ion-icon slot="end" [name]="isDropdownOpen(3) ? 'chevron-up-outline' : 'chevron-down-outline'"></ion-icon>
+        </ion-item>
+        
+        <ion-list *ngIf="isDropdownOpen(3)">
+          <ion-item>Detalhe do Evento 5</ion-item>
+          <ion-item>Detalhe do Evento 6</ion-item>
+        </ion-list>
+
+      </ion-list>
+      
+  </ion-content>
+</div>
+
+<ion-footer>
+  <ion-button color="transparent" slot="icon-only" fill="clear" (click)="goToDashboard()">
+    <ion-icon name="home-outline"></ion-icon>
+  </ion-button>
+  <ion-button color="transparent" slot="icon-only" fill="clear" (click)="goToListEvents()">
+    <ion-icon name="football-outline"></ion-icon>
+  </ion-button>
+  <ion-button color="transparent" slot="icon-only" fill="clear">
+    <ion-icon name="calendar-outline"></ion-icon>
+  </ion-button>
+  <ion-button color="transparent" slot="icon-only" fill="clear">
+    <ion-icon name="person-outline"></ion-icon>
+  </ion-button>
+</ion-footer>
