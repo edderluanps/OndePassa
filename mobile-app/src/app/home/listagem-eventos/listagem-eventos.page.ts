@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonMenu, IonMenuButton, IonHeader, IonTitle, IonToolbar, IonButtons, IonFooter, IonIcon, IonButton, IonCard, IonList, IonItem, IonLabel } from '@ionic/angular/standalone';
+import { IonContent, IonMenu, IonMenuButton, IonHeader, IonTitle, IonToolbar, IonButtons, IonFooter, IonIcon, IonButton, IonCard, IonList, IonItem, IonLabel, IonPopover } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { logoIonic, homeOutline, footballOutline, chevronUpOutline, chevronDownOutline, calendarOutline, personOutline, notifications, chevronBackOutline, chevronForwardOutline, calendarClear } from 'ionicons/icons';
 
@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
   templateUrl: './listagem-eventos.page.html',
   styleUrls: ['./listagem-eventos.page.scss'],
   standalone: true,
-  imports: [IonLabel, IonItem, IonList, IonButton, IonIcon, IonButtons, IonMenu, IonMenuButton, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonFooter]
+  imports: [IonPopover, IonLabel, IonItem, IonList, IonButton, IonIcon, IonButtons, IonMenu, IonMenuButton, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonFooter]
 })
 export class ListagemEventosPage implements OnInit {
   

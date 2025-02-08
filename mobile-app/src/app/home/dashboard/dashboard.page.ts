@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonMenu, IonMenuButton, IonHeader, IonTitle, IonToolbar, IonButtons, IonFooter, IonIcon, IonButton } from '@ionic/angular/standalone';
+import { IonPopover, IonContent, IonMenu, IonMenuButton, IonHeader, IonTitle, IonToolbar, IonButtons, IonFooter, IonIcon, IonButton } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { logoIonic, homeOutline, footballOutline, calendarOutline, personOutline, notifications, chevronBackOutline, chevronForwardOutline } from 'ionicons/icons';
 import { register } from 'swiper/element/bundle';
@@ -16,7 +16,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./dashboard.page.scss'],
   standalone: true,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  imports: [IonButton, IonIcon, IonButtons, IonMenu, IonMenuButton, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonFooter]
+  imports: [IonButton, IonIcon, IonButtons, IonMenu, IonMenuButton, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonFooter, IonPopover]
 })
 export class DashboardPage implements OnInit {
 

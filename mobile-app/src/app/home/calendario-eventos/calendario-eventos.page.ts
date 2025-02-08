@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonMenu, IonMenuButton, IonHeader, IonTitle, IonToolbar, IonButtons, IonFooter, IonIcon, IonButton, IonCard, IonDatetime } from '@ionic/angular/standalone';
+import { IonContent, IonMenu, IonMenuButton, IonHeader, IonTitle, IonToolbar, IonButtons, IonFooter, IonIcon, IonButton, IonCard, IonDatetime, IonPopover, IonItem } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { logoIonic, homeOutline, footballOutline, calendarOutline, personOutline, notifications, chevronBackOutline, chevronForwardOutline, calendarClear } from 'ionicons/icons';
 
@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
   templateUrl: './calendario-eventos.page.html',
   styleUrls: ['./calendario-eventos.page.scss'],
   standalone: true,
-  imports: [IonDatetime, IonButton, IonIcon, IonButtons, IonMenu, IonMenuButton, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonFooter]
+  imports: [IonItem, IonPopover, IonDatetime, IonButton, IonIcon, IonButtons, IonMenu, IonMenuButton, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonFooter]
 })
 export class CalendarioEventosPage implements OnInit {
 

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonMenu, IonMenuButton, IonHeader, IonTitle, IonToolbar, IonButtons, IonFooter, IonIcon, IonButton, IonModal, IonList, IonItem, IonLabel } from '@ionic/angular/standalone';
+import { IonContent, IonMenu, IonMenuButton, IonHeader, IonTitle, IonToolbar, IonButtons, IonFooter, IonIcon, IonButton, IonModal, IonList, IonItem, IonLabel, IonPopover } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { logoIonic, homeOutline, footballOutline, calendarOutline, personOutline, notifications, chevronBackOutline, chevronForwardOutline, personCircle } from 'ionicons/icons';
 import { register } from 'swiper/element/bundle';
@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
   templateUrl: './evento.page.html',
   styleUrls: ['./evento.page.scss'],
   standalone: true,
-  imports: [IonModal, IonButton, IonIcon, IonButtons, IonMenu, IonMenuButton, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonFooter]
+  imports: [IonPopover, IonModal, IonItem, IonButton, IonIcon, IonButtons, IonMenu, IonMenuButton, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonFooter]
 })
 export class EventoPage implements OnInit {
 
