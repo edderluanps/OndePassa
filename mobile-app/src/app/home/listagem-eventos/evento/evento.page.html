@@ -1,13 +1,76 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>evento</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+<ion-menu contentId="main-content">
+  <ion-header>
     <ion-toolbar>
-      <ion-title size="large">evento</ion-title>
+      <ion-title>Menu</ion-title>
     </ion-toolbar>
   </ion-header>
-</ion-content>
+  <ion-content>
+    <div class="menu">
+      <ion-button expand="full" size="big" color="transparent">Eventos</ion-button>
+      <ion-button expand="full" size="big" color="transparent">Datas</ion-button>
+      <ion-button expand="full" size="big" color="transparent">Favoritos</ion-button>
+      <ion-button expand="full" size="big" color="transparent">Recentemente</ion-button>
+      <ion-button expand="full" size="big" color="transparent">Preferencias</ion-button>
+      <ion-button expand="full" size="big" color="transparent">Meu Perfil</ion-button>
+    </div>
+  </ion-content>
+</ion-menu>
+
+<div class="ion-page" id="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>{{ evento }}</ion-title>
+      <ion-buttons slot="end">
+        <ion-button class="notification-button">
+          <ion-icon name="notifications"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <div class="content">
+      <h1>{{ evento }}</h1>
+     <span class="escudos">
+      <img [src]="time1" alt="">
+      <h1>x</h1>
+      <img [src]="time2" alt="">
+     </span>
+     <span class="placar"><h1>1</h1> x <h1>1</h1></span>
+      <h1>Onde Passa?</h1>
+      <ion-button color="transparent" expand="block" (click)="openModal('PrimeVideo')">PrimeVideo</ion-button>
+      <ion-button color="transparent" expand="block" (click)="openModal('Disney +')">Disney +</ion-button>
+      <ion-button color="transparent" expand="block" (click)="openModal('ESPN')">ESPN</ion-button>
+      <ion-button color="transparent" expand="block" (click)="openModal('Nosso Futebol')">Nosso Futebol</ion-button>
+    </div>
+    <ion-modal id="example-modal" #modal>
+      <ng-template>
+        <div class="wrapper"> 
+          <h1>Ver evento</h1>
+          <div class="modal-items">
+            <h3>Assistir em {{ selectedPlatform }}?</h3>
+            <ion-button color="primary">Ir até {{ selectedPlatform }}</ion-button>
+            <ion-button color="danger" expand="flex" (click)="closeModal()">Sair</ion-button>
+          </div>
+        </div>
+      </ng-template>
+    </ion-modal>
+  </ion-content>
+</div>
+
+<ion-footer>
+  <ion-button color="transparent" slot="icon-only" fill="clear" (click)="goToDashboard()">
+    <ion-icon name="home-outline"></ion-icon>
+  </ion-button>
+  <ion-button color="transparent" slot="icon-only" fill="clear" (click)="goToListEvents()">
+    <ion-icon name="football-outline"></ion-icon>
+  </ion-button>
+  <ion-button color="transparent" slot="icon-only" fill="clear" (click)="goToSignup()">
+    <ion-icon name="calendar-outline"></ion-icon>
+  </ion-button>
+  <ion-button color="transparent" slot="icon-only" fill="clear" (click)="goToProfile()">
+    <ion-icon name="person-outline"></ion-icon>
+  </ion-button>
+</ion-footer>

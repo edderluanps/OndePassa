@@ -1,0 +1,162 @@
+.ion-page {
+  height: 100%;
+  width: 100%;
+  background: #fff !important;
+
+  ion-header {
+    ion-toolbar {
+      background: #008b8b !important;
+      --background: #008b8b !important;
+    }
+  }
+}
+
+ion-menu ion-header ion-toolbar {
+  background: #006f6f !important;
+  --background: #006f6f !important;
+}
+
+.menu {
+  background: #008b8b;
+  height: 100%;
+  width: 100%;
+  color: #fff;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  ion-button {
+    width: 100%;
+    height: 50px;
+    margin: 0;
+    color: #fff;
+  }
+}
+
+.notification-button {
+  margin-right: 15px;
+  ion-icon {
+    font-size: 24px;
+    color: #fff;
+  }
+}
+
+ion-content {
+  --ion-background-color: #fff;
+  --color: #000;
+  height: 100%;
+  min-height: 100vh;
+}
+
+ion-content .content {
+  height: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 50px 20px 0;
+
+  .escudos {
+    height: 100px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    h1 {
+      margin: 0 20px;
+    }
+
+    img {
+      height: 50px;
+      width: 50px;
+    }
+  }
+
+  ion-button {
+    width: 100%;
+    height: 40px;
+    margin: 0;
+    border: 0;
+    box-shadow: 0;
+  }
+
+  .placar {
+    height: 100px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    h1 {
+      margin: 0 5px;
+    }
+  }
+}
+
+ion-modal#example-modal {
+  --width: fit-content;
+  --min-width: 250px;
+  --height: fit-content;
+  --border-radius: 6px;
+  --box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);
+}
+
+ion-modal#example-modal h1, h3 {
+  margin: 20px 20px 10px 20px;
+}
+
+ion-modal#example-modal ion-icon {
+  margin-right: 6px;
+  width: 48px;
+  height: 48px;
+  padding: 4px 0;
+  color: #aaaaaa;
+}
+
+ion-modal#example-modal .wrapper {
+  padding-bottom: 10px;
+  background-color: #F2F2F2;
+  color: #000;
+
+  .modal-items{
+    height: 100;
+    width: 100%;
+    padding: 0 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+ion-footer {
+  height: 60px;
+  width: 100%;
+  background: #008b8b;
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  flex-direction: row;
+
+  ion-toolbar {
+    --background: #008b8b !important;
+  }
+
+  ion-button {
+    height: 100%;
+    width: 25%;
+    border: 0;
+    margin: 0;
+    padding: 0;
+
+    ion-icon {
+      height: 70%;
+      width: 70%;
+      color: #fff;
+    }
+  }
+}

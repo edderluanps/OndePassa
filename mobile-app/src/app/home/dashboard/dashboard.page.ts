@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonMenu, IonMenuButton, IonHeader, IonTitle, IonToolbar, IonButtons, IonFooter, IonIcon, IonButton } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { logoIonic, homeOutline, footballOutline, calendarOutline, personOutline, notificationsOutline, chevronBackOutline, chevronForwardOutline } from 'ionicons/icons';
+import { logoIonic, homeOutline, footballOutline, calendarOutline, personOutline, notifications, chevronBackOutline, chevronForwardOutline } from 'ionicons/icons';
 import { register } from 'swiper/element/bundle';
 register();
 
@@ -21,7 +21,7 @@ import { Router } from '@angular/router';
 export class DashboardPage implements OnInit {
 
   constructor(public router : Router) {
-    addIcons({notificationsOutline,chevronBackOutline,chevronForwardOutline,homeOutline,footballOutline,calendarOutline,personOutline,logoIonic});
+    addIcons({notifications,chevronBackOutline,chevronForwardOutline,homeOutline,footballOutline,calendarOutline,personOutline,logoIonic});
   }
 
   ngOnInit() {
@@ -33,6 +33,14 @@ export class DashboardPage implements OnInit {
 
   goToListEvents(){
     this.router.navigate(['/listagem-eventos']);
+  }
+
+  goToSignup(){
+    this.router.navigate(['/signup'])
+  }
+
+  goToProfile(){
+    this.router.navigate(['/perfil'])
   }
 
 }

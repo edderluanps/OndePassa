@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonMenu, IonMenuButton, IonHeader, IonTitle, IonToolbar, IonButtons, IonFooter, IonIcon, IonButton, IonCard, IonList, IonItem, IonLabel } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { logoIonic, homeOutline, footballOutline, chevronUpOutline, chevronDownOutline, calendarOutline, personOutline, notificationsOutline, chevronBackOutline, chevronForwardOutline, calendarClear } from 'ionicons/icons';
+import { logoIonic, homeOutline, footballOutline, chevronUpOutline, chevronDownOutline, calendarOutline, personOutline, notifications, chevronBackOutline, chevronForwardOutline, calendarClear } from 'ionicons/icons';
 
 import { Router } from '@angular/router';
 
@@ -20,7 +20,7 @@ export class ListagemEventosPage implements OnInit {
   dropdownStates: { [key: number]: boolean } = {};
 
     constructor(public router : Router) {
-      addIcons({notificationsOutline,calendarClear,footballOutline,homeOutline,calendarOutline,personOutline,chevronBackOutline,chevronForwardOutline,logoIonic,chevronUpOutline,chevronDownOutline});
+      addIcons({notifications,calendarClear,footballOutline,homeOutline,calendarOutline,personOutline,chevronBackOutline,chevronForwardOutline,logoIonic,chevronUpOutline,chevronDownOutline});
       this.setCurrentDate();
     }
 
@@ -56,6 +56,14 @@ export class ListagemEventosPage implements OnInit {
 
   goToEvent(){
     this.router.navigate(['/evento']);
+  }
+
+  goToSignup(){
+    this.router.navigate(['/signup'])
+  }
+
+  goToProfile(){
+    this.router.navigate(['/perfil'])
   }
 
 }

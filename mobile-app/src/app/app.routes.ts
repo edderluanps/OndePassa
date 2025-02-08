@@ -25,5 +25,13 @@ export const routes: Routes = [
   {
     path: 'evento',
     loadComponent: () => import('./home/listagem-eventos/evento/evento.page').then( m => m.EventoPage)
+  },
+  {
+    path: 'perfil',
+    loadComponent: () => import('./home/perfil/perfil.page').then( m => m.PerfilPage)
+  },
+  {
+    path: 'signup',
+    loadComponent: () => import('./home/signup/signup.page').then( m => m.SignupPage)
   }
 ];

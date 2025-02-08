@@ -34,8 +34,8 @@ export class LoginPage implements OnInit {
       this.presentAlert();
     }
   
-    goToSignup(){
-      this.router.navigate(['/home']);
+    goToHome(){
+      this.router.navigate(['/']);
     }
 
   ngOnInit() {
