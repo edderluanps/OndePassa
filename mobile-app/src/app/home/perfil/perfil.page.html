@@ -1,13 +1,64 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>perfil</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+<ion-menu contentId="main-content">
+  <ion-header>
     <ion-toolbar>
-      <ion-title size="large">perfil</ion-title>
+      <ion-title>Menu</ion-title>
     </ion-toolbar>
   </ion-header>
-</ion-content>
+  <ion-content>
+    <div class="menu">
+      <ion-button expand="full" size="big" color="transparent">Eventos</ion-button>
+      <ion-button expand="full" size="big" color="transparent">Datas</ion-button>
+      <ion-button expand="full" size="big" color="transparent">Favoritos</ion-button>
+      <ion-button expand="full" size="big" color="transparent">Recentemente</ion-button>
+      <ion-button expand="full" size="big" color="transparent">Preferencias</ion-button>
+      <ion-button expand="full" size="big" color="transparent">Meu Perfil</ion-button>
+    </div>
+  </ion-content>
+</ion-menu>
+
+<div class="ion-page" id="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Perfil</ion-title>
+      <ion-buttons slot="end">
+        <ion-button class="notification-button">
+          <ion-icon name="notifications"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="user-content">
+    <div class="content">
+      <div class="profile-img-container">
+        <img [src]="userImg" alt="Profile Picture">
+        <ion-button fill="clear" class="camera-button" (click)="openFileInput()">
+          <ion-icon  slot="icon-only" size="large" name="camera"></ion-icon>
+        </ion-button>
+        <input type="file" #fileInput hidden (change)="onFileSelected($event)">
+      </div>
+      <ion-input label="Nome" labelPlacement="floating" [value]="nome"></ion-input>
+      <ion-input label="Email" labelPlacement="floating" [value]="email"></ion-input>
+      <ion-button class="check" color="success"> Salvar <ion-icon slot="end" name="checkmark-outline"></ion-icon> </ion-button>
+      <ion-button class="cancel" color="danger"> Cancelar <ion-icon slot="end" name="stop-circle-outline"></ion-icon> </ion-button>
+    </div>
+  </ion-content>
+  
+</div>
+
+<ion-footer>
+  <ion-button color="transparent" slot="icon-only" fill="clear" (click)="goToDashboard()">
+    <ion-icon name="home-outline"></ion-icon>
+  </ion-button>
+  <ion-button color="transparent" slot="icon-only" fill="clear" (click)="goToListEvents()">
+    <ion-icon name="football-outline"></ion-icon>
+  </ion-button>
+  <ion-button color="transparent" slot="icon-only" fill="clear" (click)="goToScheduller()">
+    <ion-icon name="calendar-outline"></ion-icon>
+  </ion-button>
+  <ion-button color="transparent" slot="icon-only" fill="clear" (click)="goToProfile()">
+    <ion-icon name="person-outline"></ion-icon>
+  </ion-button>
+</ion-footer>
