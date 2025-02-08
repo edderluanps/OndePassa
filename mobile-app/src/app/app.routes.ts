@@ -33,5 +33,9 @@ export const routes: Routes = [
   {
     path: 'signup',
     loadComponent: () => import('./home/signup/signup.page').then( m => m.SignupPage)
+  },
+  {
+    path: 'calendario-eventos',
+    loadComponent: () => import('./home/calendario-eventos/calendario-eventos.page').then( m => m.CalendarioEventosPage)
   }
 ];

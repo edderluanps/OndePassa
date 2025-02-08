@@ -58,8 +58,8 @@ export class ListagemEventosPage implements OnInit {
     this.router.navigate(['/evento']);
   }
 
-  goToSignup(){
-    this.router.navigate(['/signup'])
+  goToScheduller(){
+    this.router.navigate(['/calendario-eventos'])
   }
 
   goToProfile(){

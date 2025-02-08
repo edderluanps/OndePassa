@@ -35,8 +35,8 @@ export class DashboardPage implements OnInit {
     this.router.navigate(['/listagem-eventos']);
   }
 
-  goToSignup(){
-    this.router.navigate(['/signup'])
+  goToScheduller(){
+    this.router.navigate(['/calendario-eventos'])
   }
 
   goToProfile(){
