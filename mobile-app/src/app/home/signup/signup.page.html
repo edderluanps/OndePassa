@@ -1,13 +1,13 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>signup</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">signup</ion-title>
-    </ion-toolbar>
-  </ion-header>
-</ion-content>
+<div class="content">
+    <ion-input label="Nome" labelPlacement="floating" placeholder="Digite seu nome"></ion-input>
+    <ion-input label="Email" labelPlacement="floating" placeholder="Digite seu email"></ion-input>
+    <ion-input label="Senha" labelPlacement="floating" placeholder="Digite sua senha">
+      <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+    </ion-input>
+    <ion-input label="Confirme a senha" labelPlacement="floating" placeholder="Digite sua senha">
+      <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+    </ion-input>
+    <ion-button color="success" size="large" (click)="goToProfile()">Cadastrar</ion-button>
+    <ion-button color="danger" size="large" (click)="goToHome()">Voltar</ion-button>
+    <p>v1.0.0</p>
+</div>
