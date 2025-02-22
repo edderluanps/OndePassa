@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="form">
+        <mat-form-field appearance="outline">
+          <mat-label>nome</mat-label>
+          <input matInput placeholder="ex: João da Silva">
+        </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>e-mail</mat-label>
+            <input matInput placeholder="ex: joao@email.com">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>senha</mat-label>
+            <input matInput [type]="hide() ? 'password' : 'text'" />
+            <button
+              mat-icon-button
+              matSuffix
+              (click)="clickEvent($event)"
+              [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hide()"
+            >
+              <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Favorite sport</mat-label>
+            <mat-select>
+              @for (food of foods; track food) {
+                <mat-option [value]="food.value">{{food.viewValue}}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+
+          <button mat-raised-button (click)="goToDashboard()">Cadastrar</button>
+          <button mat-raised-button (click)="goToLogin()">Voltar</button>
+    </div>
+</div>
