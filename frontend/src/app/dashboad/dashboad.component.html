@@ -1,1 +1,56 @@
-<p>dashboad works!</p>
+<div class="container">
+    <div class="header">
+        <app-header (toggleSidenav)="drawer.toggle()"></app-header>
+    </div>
+    
+    <div class="dashboard-area">
+        <mat-drawer-container class="example-container" autosize>
+            <mat-drawer #drawer class="example-sidenav" mode="side">
+              <app-side-menu></app-side-menu>
+            </mat-drawer>
+          
+            <div class="example-sidenav-content">
+              <mat-card class="dashboard-panel">
+                <div class="cards">
+                  <mat-card class="card-1">
+                    <mat-card-header>
+                      <mat-card-title> Acessos recentes</mat-card-title>
+                      <mat-card-subtitle>30</mat-card-subtitle>
+                    </mat-card-header>
+                  </mat-card>
+
+                  <mat-card class="card-2">
+                    <mat-card-header>
+                      <mat-card-title> Acessos totais</mat-card-title>
+                      <mat-card-subtitle>340</mat-card-subtitle>
+                    </mat-card-header>
+                  </mat-card>
+
+                  <mat-card class="card-3">
+                    <mat-card-header>
+                      <mat-card-title> Eventos hoje</mat-card-title>
+                      <mat-card-subtitle>20</mat-card-subtitle>
+                    </mat-card-header>
+                  </mat-card>
+
+                  <mat-card class="card-4">
+                    <mat-card-header>
+                      <mat-card-title> Com transmissão</mat-card-title>
+                      <mat-card-subtitle>12</mat-card-subtitle>
+                    </mat-card-header>
+                  </mat-card>
+                </div>
+
+                <div class="charts">
+
+                </div>
+
+                <div class="tables">
+
+                </div>
+              </mat-card>
+            </div>
+          
+          </mat-drawer-container>
+    </div>
+</div>

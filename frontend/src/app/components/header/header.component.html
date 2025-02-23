@@ -1,0 +1,30 @@
+<mat-toolbar>
+  <button
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with menu icon"
+    (click)="onMenuClick()"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>Dashboard</span>
+  <span class="toolbar-spacer"></span>
+
+  <!-- Ícone de notificações com badge -->
+  <button
+    mat-icon-button
+    class="example-icon favorite-icon"
+    aria-label="Example icon-button with notifications"
+    matBadgeColor="warn"
+  >
+    <mat-icon matBadge="{{ badge }}">notifications</mat-icon>
+  </button>
+
+  <button
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with account icon"
+  >
+    <mat-icon>account_circle</mat-icon>
+  </button>
+</mat-toolbar>
