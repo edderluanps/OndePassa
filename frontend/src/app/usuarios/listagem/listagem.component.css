@@ -1,0 +1,14 @@
+.container {
+    height: 100%;
+    width: 100%;
+    padding: 20px;
+}
+
+.container table {
+  width: 100%;
+}
+
+.container .mat-mdc-form-field {
+  font-size: 14px;
+  width: 100%;
+}

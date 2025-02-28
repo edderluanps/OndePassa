@@ -6,6 +6,7 @@ import { FormEventComponent } from './events/form-event/form-event.component';
 import { ReadEventComponent } from './events/read-event/read-event.component';
 import { SignupComponent } from './signup/signup.component';
 import { DataComponent } from './dashboard/data/data.component';
+import { ListagemComponent } from './usuarios/listagem/listagem.component';
 
 export const routes: Routes = [
     {path: "", component: DashboardComponent},
@@ -14,8 +15,7 @@ export const routes: Routes = [
     { 
         path: 'dashboard', component: DashboardComponent, children: [
           { path: 'data', component: DataComponent },
-          { path: 'signup', component: SignupComponent },
-          { path: 'login', component: LoginComponent }
+          { path: 'listagem-usuarios', component: ListagemComponent }
         ]
       },
     {path: "events", component: EventsComponent},
