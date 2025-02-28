@@ -1,36 +1,38 @@
 import { Component } from '@angular/core';
-import {MatTableDataSource, MatTableModule} from '@angular/material/table';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
-export interface PeriodicElement {
-  name: string;
+export interface Person {
   position: number;
-  weight: number;
-  symbol: string;
+  name: string;
+  age: number;
+  gender: string;
+  location: string;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
+const PERSON_DATA: Person[] = [
+  { position: 1, name: 'John Doe', age: 28, gender: 'Male', location: 'USA' },
+  { position: 2, name: 'Jane Smith', age: 34, gender: 'Female', location: 'Canada' },
+  { position: 3, name: 'Carlos Silva', age: 45, gender: 'Male', location: 'Brazil' },
+  { position: 4, name: 'Maria Garcia', age: 22, gender: 'Female', location: 'Spain' },
+  { position: 5, name: 'Luca Rossi', age: 30, gender: 'Male', location: 'Italy' },
+  { position: 6, name: 'Emma Brown', age: 29, gender: 'Female', location: 'Australia' },
+  { position: 7, name: 'David Lee', age: 38, gender: 'Male', location: 'South Korea' },
+  { position: 8, name: 'Sophia Wang', age: 25, gender: 'Female', location: 'China' },
+  { position: 9, name: 'Michael Jordan', age: 42, gender: 'Male', location: 'USA' },
+  { position: 10, name: 'Olivia Williams', age: 33, gender: 'Female', location: 'UK' },
 ];
+
 @Component({
   selector: 'app-listagem',
   imports: [MatFormFieldModule, MatInputModule, MatTableModule],
   templateUrl: './listagem.component.html',
-  styleUrl: './listagem.component.css'
+  styleUrls: ['./listagem.component.css']
 })
 export class ListagemComponent {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  displayedColumns: string[] = ['position', 'name', 'age', 'gender', 'location'];
+  dataSource = new MatTableDataSource(PERSON_DATA);
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
