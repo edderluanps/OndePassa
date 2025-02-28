@@ -4,13 +4,15 @@ import { SideMenuComponent } from "../components/side-menu/side-menu.component";
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatCardModule } from '@angular/material/card';
+import { DataComponent } from "./data/data.component";
+import { RouterModule, RouterOutlet } from '@angular/router';
 
 @Component({
-  selector: 'app-dashboad',
-  imports: [HeaderComponent, SideMenuComponent, MatSidenavModule, MatButtonModule, MatCardModule],
-  templateUrl: './dashboad.component.html',
-  styleUrl: './dashboad.component.css'
+  selector: 'app-dashboard',
+  imports: [HeaderComponent, SideMenuComponent, MatSidenavModule, MatButtonModule, MatCardModule, RouterModule],
+  templateUrl: './dashboard.component.html',
+  styleUrl: './dashboard.component.css'
 })
-export class DashboadComponent {
+export class DashboardComponent {
   showFiller = false;
 }

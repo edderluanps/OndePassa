@@ -24,13 +24,25 @@
 }
 
 .container .dashboard-area .example-sidenav-content {
-  display: flex;
   height: 100%;
-  align-items: center;
-  justify-content: center;
+  width: 100%;
   background: #f2f2f2;
   padding: 10px;
 }
+
+.container .dashboard-area .example-sidenav-content router-outlet {
+  width: 100%;
+  height: 100%;
+}
+
+/**
+.container .dashboard-area .example-sidenav-content > * {
+  flex-grow: 1;
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+
 
 .container .dashboard-area .example-sidenav {
   padding: 0;
@@ -93,3 +105,4 @@
   height: 40%;
   width: 100%;
 }
+  **/
