@@ -30,7 +30,8 @@ public class EventoService {
 
     public void put(Evento evento, Long id){
         var eventoToEdit = get(id);
-        if (!(eventoToEdit == null)){
+        if (eventoToEdit != null) {
+            evento.setId(id);
             eventoRepository.save(evento);
         }else{
             throw new ResponseStatusException(HttpStatusCode.valueOf(404), "Não foi encontrado");

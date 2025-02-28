@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/evento")
 public class EventoController {
 
     @Autowired
@@ -30,7 +30,7 @@ public class EventoController {
         return eventoService.post(evento);
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     public void put(@PathVariable Long id, @RequestBody Evento evento){
         eventoService.put(evento, id);
     }

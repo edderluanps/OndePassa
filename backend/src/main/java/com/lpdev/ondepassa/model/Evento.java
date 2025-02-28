@@ -21,7 +21,13 @@ public class Evento implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nome;
+    private String timeA;
+
+    private String timeB;
+
+    @ManyToOne
+    @JoinColumn(name = "liga_id", nullable = false)
+    private Liga liga;
 
     private String tipoEvento;
 

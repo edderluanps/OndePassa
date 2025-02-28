@@ -27,12 +27,27 @@
     mat-icon-button
     class="example-icon"
     aria-label="Example icon-button with account icon"
+    class="example-icon favorite-icon"
+    aria-label="Example icon-button with notifications"
+    matBadgeColor="warn"
+    [matMenuTriggerFor]="perfil"
   >
     <mat-icon>account_circle</mat-icon>
   </button>
 </mat-toolbar>
+
 <mat-menu #menu="matMenu">
   <button mat-menu-item>Item 1</button>
   <button mat-menu-item>Item 2</button>
   <button mat-menu-item>Item 3</button>
+</mat-menu>
+
+<mat-menu #perfil="matMenu" xPosition="before" class="mat-menu-perfil">
+  <div mat-menu-item class="mini-perfil">
+
+  </div>
+  <button mat-menu-item class="btn-perfil">
+    <mat-icon>assignment_ind</mat-icon>
+    <h3>Ir para perfil</h3>
+  </button>
 </mat-menu>
