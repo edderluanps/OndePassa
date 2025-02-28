@@ -5,6 +5,7 @@ import lombok.*;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "tbl_evento")
@@ -33,6 +34,6 @@ public class Evento implements Serializable {
 
     private Date dataEvento;
 
-    private String transmissao;
-
+    @OneToMany(mappedBy = "evento", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Transmissao> transmissoes;
 }
