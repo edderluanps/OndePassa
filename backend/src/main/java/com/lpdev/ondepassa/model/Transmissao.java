@@ -31,8 +31,8 @@ public class Transmissao implements Serializable {
 
     private String linkTransmissao;
 
-    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "evento_id", nullable = false)
     private Evento evento;
+
 }
