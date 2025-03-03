@@ -3,6 +3,7 @@ package com.lpdev.ondepassa.controller;
 import com.lpdev.ondepassa.model.Transmissao;
 import com.lpdev.ondepassa.service.TransmissaoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +27,13 @@ public class TransmissaoController {
     @GetMapping
     public ResponseEntity<List<Transmissao>> get(){
         var response = transmissaoService.get();
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/paginated")
+    public ResponseEntity<Page<Transmissao>> getPaginated(@RequestParam(defaultValue = "0") int page,
+                                                     @RequestParam(defaultValue = "10") int size) {
+        var response = transmissaoService.getPaginated(page, size);
         return ResponseEntity.ok(response);
     }
 

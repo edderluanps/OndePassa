@@ -3,6 +3,9 @@ package com.lpdev.ondepassa.service;
 import com.lpdev.ondepassa.model.Usuario;
 import com.lpdev.ondepassa.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -21,6 +24,11 @@ public class UsuarioService {
 
     public List<Usuario> get(){
         return usuarioRepository.findAll();
+    }
+
+    public Page<Usuario> getPaginated(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return usuarioRepository.findAll(pageable);
     }
 
     public Usuario post(Usuario usuario){
