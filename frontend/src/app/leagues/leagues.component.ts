@@ -7,15 +7,19 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { LigaService } from '../services/liga.service';
 import { Liga } from '../models/liga';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { ViewChild, AfterViewInit } from '@angular/core';
 
 @Component({
   selector: 'app-leagues',
-  imports: [MatFormFieldModule, MatInputModule, MatTableModule, HttpClientModule, MatIconModule, MatButtonModule],
+  imports: [MatFormFieldModule, MatInputModule, MatTableModule, HttpClientModule, MatIconModule, MatButtonModule, MatPaginatorModule],
   templateUrl: './leagues.component.html',
   styleUrl: './leagues.component.css',
   providers:[LigaService]
 })
 export class LeaguesComponent {
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
     ligas: Liga[] = [];
     liga: Liga | null = null;
@@ -32,6 +36,10 @@ export class LeaguesComponent {
   
     ngOnInit(): void { 
       this.carregarLigas();
+    }
+
+    ngAfterViewInit() {
+      this.dataSource.paginator = this.paginator;
     }
   
     carregarLigas(): void {

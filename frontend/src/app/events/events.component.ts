@@ -8,15 +8,19 @@ import { EventoService } from '../services/evento.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { ViewChild, AfterViewInit } from '@angular/core';
 
 @Component({
   selector: 'app-events',
-  imports: [CommonModule, MatFormFieldModule, MatInputModule, MatTableModule, HttpClientModule, MatIconModule, MatButtonModule],
+  imports: [CommonModule, MatFormFieldModule, MatInputModule, MatTableModule, HttpClientModule, MatIconModule, MatButtonModule, MatPaginatorModule],
   templateUrl: './events.component.html',
   styleUrls: ['./events.component.css'],
   providers: [EventoService, DatePipe]
 })
 export class EventsComponent {
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   eventos: Evento[] = [];
   evento: Evento | null = null;
@@ -40,6 +44,10 @@ export class EventsComponent {
 
   ngOnInit(): void { 
     this.carregarEventos();
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
   }
 
   carregarEventos(): void {

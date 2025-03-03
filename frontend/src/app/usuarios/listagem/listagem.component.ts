@@ -7,15 +7,19 @@ import { Usuario } from '../../models/usuario';
 import { HttpClientModule } from '@angular/common/http';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { ViewChild, AfterViewInit } from '@angular/core';
 
 @Component({
   selector: 'app-listagem',
-  imports: [MatFormFieldModule, MatInputModule, MatTableModule, HttpClientModule, MatIconModule, MatButtonModule],
+  imports: [MatFormFieldModule, MatInputModule, MatTableModule, HttpClientModule, MatIconModule, MatButtonModule, MatPaginatorModule],
   templateUrl: './listagem.component.html',
   styleUrls: ['./listagem.component.css'],
   providers: [UsuarioService]
 })
 export class ListagemComponent implements OnInit {
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   usuarios: Usuario[] = [];
   usuario: Usuario | null = null;
@@ -27,6 +31,10 @@ export class ListagemComponent implements OnInit {
 
   ngOnInit(): void {
     this.carregarUsuarios();
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
   }
 
   carregarUsuarios(): void {

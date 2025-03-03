@@ -32,7 +32,9 @@
 
     <ng-container matColumnDef="localidadeTransmissao">
       <th mat-header-cell *matHeaderCellDef>Local transmissão</th>
-      <td mat-cell *matCellDef="let element">{{ element.localidadeTransmissao }}</td>
+      <td mat-cell *matCellDef="let element">
+        {{ element.localidadeTransmissao }}
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="linkTransmissao">
@@ -65,4 +67,8 @@
       </td>
     </tr>
   </table>
+  <mat-paginator
+    [pageSizeOptions]="[5, 8, 12]"
+    showFirstLastButtons
+  ></mat-paginator>
 </div>

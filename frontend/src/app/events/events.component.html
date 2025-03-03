@@ -37,7 +37,9 @@
 
     <ng-container matColumnDef="dataEvento">
       <th mat-header-cell *matHeaderCellDef>Data</th>
-      <td mat-cell *matCellDef="let element">{{ formatDate(element.dataEvento) }}</td>
+      <td mat-cell *matCellDef="let element">
+        {{ formatDate(element.dataEvento) }}
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="actions" class="table-actions">
@@ -45,7 +47,9 @@
       <td mat-cell *matCellDef="let element">
         <button mat-raised-button (click)="viewEvento(element.id)">View</button>
         <button mat-raised-button (click)="editEvento(element.id)">Edit</button>
-        <button mat-raised-button (click)="deleteEvento(element.id)">Delete</button>
+        <button mat-raised-button (click)="deleteEvento(element.id)">
+          Delete
+        </button>
       </td>
     </ng-container>
 
@@ -58,4 +62,8 @@
       </td>
     </tr>
   </table>
+  <mat-paginator
+    [pageSizeOptions]="[5, 8, 12]"
+    showFirstLastButtons
+  ></mat-paginator>
 </div>
