@@ -2,39 +2,70 @@ import { Component } from '@angular/core';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
-
-export interface PeriodicElement {
-  nome: string;
-  id: number;
-  modalidade: string;
-  local: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {id: 1, nome: 'Champions League', modalidade: 'Football', local: 'Europe'},
-  {id: 2, nome: 'Premier League', modalidade: 'Football', local: 'England'},
-  {id: 3, nome: 'La Liga', modalidade: 'Football', local: 'Spain'},
-  {id: 4, nome: 'Serie A', modalidade: 'Football', local: 'Italy'},
-  {id: 5, nome: 'Bundesliga', modalidade: 'Football', local: 'Germany'},
-  {id: 6, nome: 'Major League Soccer', modalidade: 'Football', local: 'USA'},
-  {id: 7, nome: 'NBA', modalidade: 'Basketball', local: 'USA'},
-  {id: 8, nome: 'NHL', modalidade: 'Ice Hockey', local: 'North America'},
-  {id: 9, nome: 'Formula 1', modalidade: 'Motorsport', local: 'Worldwide'},
-  {id: 10, nome: 'UFC', modalidade: 'MMA', local: 'Worldwide'},
-];
+import { HttpClientModule } from '@angular/common/http';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { LigaService } from '../services/liga.service';
+import { Liga } from '../models/liga';
 
 @Component({
   selector: 'app-leagues',
-  imports: [MatFormFieldModule, MatInputModule, MatTableModule],
+  imports: [MatFormFieldModule, MatInputModule, MatTableModule, HttpClientModule, MatIconModule, MatButtonModule],
   templateUrl: './leagues.component.html',
-  styleUrl: './leagues.component.css'
+  styleUrl: './leagues.component.css',
+  providers:[LigaService]
 })
 export class LeaguesComponent {
-displayedColumns: string[] = ['id', 'nome', 'modalidade', 'local'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
+    ligas: Liga[] = [];
+    liga: Liga | null = null;
+  
+    displayedColumns: string[] = ['position', 'nome', 'local', 'actions'];
+    dataSource = new MatTableDataSource<Liga>(this.ligas);
+  
+    applyFilter(event: Event) {
+      const filterValue = (event.target as HTMLInputElement).value;
+      this.dataSource.filter = filterValue.trim().toLowerCase();
+    }
+  
+    constructor( private ligaService: LigaService ) { }
+  
+    ngOnInit(): void { 
+      this.carregarLigas();
+    }
+  
+    carregarLigas(): void {
+      this.ligaService.getLigas().subscribe(
+        (data) => {
+          this.ligas = data;
+          this.dataSource.data = this.ligas;
+        },
+        (error) => {
+          console.error('Erro ao carregar ligas:', error);
+        }
+      );
+    }
+  
+    carregarLigaPorId(id: number): void {
+      this.ligaService.getLigaById(id).subscribe(
+        (data) => {
+          this.liga = data;
+        },
+        (error) => {
+          console.error('Erro ao carregar liga:', error);
+        }
+      );
+    }
+  
+    viewLiga(id: number): void {
+      console.log('View liga with ID:', id);
+    }
+  
+    editLiga(id: number): void {
+      console.log('Edit liga with ID:', id);
+    }
+  
+    deleteLiga(id: number): void {
+      console.log('Delete liga with ID:', id);
+    }
 }
