@@ -70,3 +70,12 @@ body {
     font-weight: 700;
     font-style: italic;
 }
+
+/** Pellete **/
+:root {
+    --primary-color: #DC143C;  
+    --secondary-color: #FFFF;
+    --accent-color: #FF7F50;
+    --background-color: #F2F2F2;
+    --text-color: #1A1A1A;
+  }
