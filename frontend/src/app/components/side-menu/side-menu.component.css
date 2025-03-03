@@ -12,7 +12,7 @@
 
 .example-accordion-item {
   display: block;
-  border: solid 1px #ccc;
+  border-bottom: solid 1px #ccc;
 }
 
 .example-accordion-item + .example-accordion-item {

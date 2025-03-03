@@ -1,41 +1,80 @@
 import { Component } from '@angular/core';
+import { CommonModule, DatePipe } from '@angular/common';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-
-export interface SportsEvent {
-  position: number;
-  name: string;
-  type: string;      // Type of sport event (e.g., Football, Basketball, etc.)
-  location: string;  // Location of the event (e.g., city or country)
-  broadcast: string; // Broadcast channel for the event
-}
-
-const EVENT_DATA: SportsEvent[] = [
-  { position: 1, name: 'FIFA World Cup', type: 'Football', location: 'Qatar', broadcast: 'TNT Sports Brasil' },
-  { position: 2, name: 'Olympic Games', type: 'Multi-Sport', location: 'Paris', broadcast: 'NBC Sports' },
-  { position: 3, name: 'NBA Finals', type: 'Basketball', location: 'USA', broadcast: 'ESPN' },
-  { position: 4, name: 'Super Bowl', type: 'American Football', location: 'USA', broadcast: 'FOX Sports' },
-  { position: 5, name: 'Wimbledon', type: 'Tennis', location: 'London', broadcast: 'BBC Sport' },
-  { position: 6, name: 'Tour de France', type: 'Cycling', location: 'France', broadcast: 'Eurosport' },
-  { position: 7, name: 'UFC Championship', type: 'MMA', location: 'Las Vegas', broadcast: 'ESPN+' },
-  { position: 8, name: 'Formula 1 Grand Prix', type: 'Motorsport', location: 'Monaco', broadcast: 'Sky Sports' },
-  { position: 9, name: 'Champions League Final', type: 'Football', location: 'Istanbul', broadcast: 'TNT Sports Brasil' },
-  { position: 10, name: 'The Masters', type: 'Golf', location: 'Augusta', broadcast: 'CBS Sports' },
-];
+import { Evento } from '../models/evento';
+import { EventoService } from '../services/evento.service';
+import { HttpClientModule } from '@angular/common/http';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-events',
-  imports: [MatFormFieldModule, MatInputModule, MatTableModule],
+  imports: [CommonModule, MatFormFieldModule, MatInputModule, MatTableModule, HttpClientModule, MatIconModule, MatButtonModule],
   templateUrl: './events.component.html',
-  styleUrls: ['./events.component.css']
+  styleUrls: ['./events.component.css'],
+  providers: [EventoService, DatePipe]
 })
 export class EventsComponent {
-  displayedColumns: string[] = ['position', 'name', 'type', 'location', 'broadcast'];
-  dataSource = new MatTableDataSource(EVENT_DATA);
+
+  eventos: Evento[] = [];
+  evento: Evento | null = null;
+
+  displayedColumns: string[] = ['position', 'timeA', 'timeB', 'liga', 'tipoEvento', 'dataEvento', 'actions'];
+  dataSource = new MatTableDataSource<Evento>(this.eventos);
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
+
+  constructor(
+    private datePipe: DatePipe,
+    private eventoService: EventoService
+  ) { }
+
+  formatDate(dateString: string): string | null {
+    return this.datePipe.transform(dateString, 'dd/MM/yyyy, HH:mm');
+  }
+
+  ngOnInit(): void { 
+    this.carregarEventos();
+  }
+
+  carregarEventos(): void {
+    this.eventoService.getEventos().subscribe(
+      (data) => {
+        this.eventos = data;
+        this.dataSource.data = this.eventos;
+      },
+      (error) => {
+        console.error('Erro ao carregar eventos:', error);
+      }
+    );
+  }
+
+  carregarEventoPorId(id: number): void {
+    this.eventoService.getEventoById(id).subscribe(
+      (data) => {
+        this.evento = data;
+      },
+      (error) => {
+        console.error('Erro ao carregar evento:', error);
+      }
+    );
+  }
+
+  viewEvento(id: number): void {
+    console.log('View evento with ID:', id);
+  }
+
+  editEvento(id: number): void {
+    console.log('Edit evento with ID:', id);
+  }
+
+  deleteEvento(id: number): void {
+    console.log('Delete evento with ID:', id);
+  }
+
 }
