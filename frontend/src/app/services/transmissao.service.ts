@@ -12,11 +12,11 @@ export class TransmissaoService {
   
     constructor(private http: HttpClient) {}
   
-    getEventos(): Observable<Transmissao[]> {
+    getTransmissoes(): Observable<Transmissao[]> {
       return this.http.get<Transmissao[]>(`${this.apiUrl}api/transmissao`);
     }
   
-    getEventoById(id: number): Observable<Transmissao> {
+    getTransmissaoById(id: number): Observable<Transmissao> {
       return this.http.get<Transmissao>(`${this.apiUrl}api/transmissao/${id}`);
     }
 }

@@ -10,6 +10,9 @@ import { ListagemComponent } from './usuarios/listagem/listagem.component';
 import { LeaguesComponent } from './leagues/leagues.component';
 import { LeaguePageComponent } from './leagues/league-page/league-page.component';
 import { FormLeagueComponent } from './leagues/form-league/form-league.component';
+import { BroadcastComponent } from './broadcast/broadcast.component';
+import { BroadcastPageComponent } from './broadcast/broadcast-page/broadcast-page.component';
+import { FormBroadcastComponent } from './broadcast/form-broadcast/form-broadcast.component';
 
 export const routes: Routes = [
     { path: "", component: LoginComponent },
@@ -25,7 +28,10 @@ export const routes: Routes = [
         { path: "form-event", component: FormEventComponent },
         { path: "leagues", component: LeaguesComponent },
         { path: "league-page", component: LeaguePageComponent },
-        { path: "form-league", component: FormLeagueComponent }
+        { path: "form-league", component: FormLeagueComponent },
+        { path: "broadcast", component: BroadcastComponent },
+        { path: "broadcast-page", component: BroadcastPageComponent },
+        { path: "form-broadcast", component: FormBroadcastComponent }
       ]
     }
 ];
