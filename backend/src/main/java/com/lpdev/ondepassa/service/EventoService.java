@@ -23,6 +23,11 @@ public class EventoService {
         return eventoRepository.findAll();
     }
 
+    public List<Evento> get(String local) {
+        return eventoRepository.findByLocal(local);
+    }
+
+
     public Evento get(Long id) {
         return eventoRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatusCode.valueOf(404), "Não foi encontrado"));
     }

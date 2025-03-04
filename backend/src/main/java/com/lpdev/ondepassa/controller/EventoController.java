@@ -30,6 +30,12 @@ public class EventoController {
         return ResponseEntity.ok(response);
     }
 
+    @GetMapping("/bylocal")
+    public ResponseEntity<List<Evento>> get(@RequestParam String local){
+        var response = eventoService.get(local);
+        return ResponseEntity.ok(response);
+    }
+
     @GetMapping("/paginated")
     public ResponseEntity<Page<Evento>> getPaginated(@RequestParam(defaultValue = "0") int page,
                                                      @RequestParam(defaultValue = "10") int size) {
