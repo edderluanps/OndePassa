@@ -2,15 +2,15 @@ package com.lpdev.ondepassa.service;
 
 import com.lpdev.ondepassa.model.Evento;
 import com.lpdev.ondepassa.repository.EventoRepository;
+import com.lpdev.ondepassa.service.exceptions.DataIntegrityException;
+import com.lpdev.ondepassa.service.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -29,7 +29,8 @@ public class EventoService {
 
 
     public Evento get(Long id) {
-        return eventoRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatusCode.valueOf(404), "Não foi encontrado"));
+        return eventoRepository.findById(id).orElseThrow(
+                () -> new ObjectNotFoundException("Não foi encontrado"));
     }
 
     public Page<Evento> getPaginated(int page, int size) {
@@ -47,16 +48,16 @@ public class EventoService {
             evento.setId(id);
             eventoRepository.save(evento);
         }else{
-            throw new ResponseStatusException(HttpStatusCode.valueOf(404), "Não foi encontrado");
+            throw new ObjectNotFoundException("Não foi encontrado");
         }
     }
 
     public void delete(Long id){
-        var eventoToEdit = get(id);
-        if (!(eventoToEdit == null)){
+        get(id);
+        try{
             eventoRepository.deleteById(id);
-        }else{
-            throw new ResponseStatusException(HttpStatusCode.valueOf(404), "Não foi encontrado");
+        }catch(DataIntegrityViolationException ex){
+            throw new DataIntegrityException("Não foi possivel deletar: Evento Ativo.");
         }
     }
 

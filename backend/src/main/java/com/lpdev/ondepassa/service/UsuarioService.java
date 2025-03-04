@@ -2,13 +2,14 @@ package com.lpdev.ondepassa.service;
 
 import com.lpdev.ondepassa.model.Usuario;
 import com.lpdev.ondepassa.repository.UsuarioRepository;
+import com.lpdev.ondepassa.service.exceptions.DataIntegrityException;
+import com.lpdev.ondepassa.service.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class UsuarioService {
     private UsuarioRepository usuarioRepository;
 
     public Usuario get(Long id){
-        return usuarioRepository.findById(id).orElseThrow(()-> new ResponseStatusException(HttpStatusCode.valueOf(404), "Não encontrado"));
+        return usuarioRepository.findById(id).orElseThrow(()-> new ObjectNotFoundException("Não encontrado"));
     }
 
     public List<Usuario> get(){
@@ -41,16 +42,16 @@ public class UsuarioService {
             usuario.setId(id);
             usuarioRepository.save(usuario);
         }else{
-            throw new ResponseStatusException(HttpStatusCode.valueOf(404), "Não encontrado");
+            throw new ObjectNotFoundException( "Não encontrado");
         }
     }
 
     public void delete(Long id){
-        var userToDelete = get(id);
-        if (userToDelete != null){
+        get(id);
+        try{
             usuarioRepository.deleteById(id);
-        }else{
-            throw new ResponseStatusException(HttpStatusCode.valueOf(404), "Não encontrado");
+        }catch(DataIntegrityViolationException ex){
+            throw new DataIntegrityException("Não foi possivel deletar: Usuário Ativo.");
         }
     }
 
