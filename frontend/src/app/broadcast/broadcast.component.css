@@ -29,6 +29,27 @@
   border: 1px solid var(--light-color);
 }
 
+table.mat-table {
+  width: 100%;
+}
+
+.mat-column-position,
+.mat-column-transmissao,
+.mat-column-canal,
+.mat-column-canalImg,
+.mat-column-localidadeTransmissao,
+.mat-column-linkTransmissao,
+.mat-column-evento,
+.mat-column-actions {
+  flex: 1;
+}
+
+.mat-column-actions{
+  text-align: end; 
+  justify-content: center;
+}
+
+
 .container .mat-mdc-form-field {
   font-size: 14px;
   width: 100%;
@@ -59,4 +80,8 @@ mat-paginator{
   flex-direction: row;
   justify-content: center;
   border-top: 1px solid var(--light-color);
+}
+.align{
+  text-align: end;
+  padding-right: 160px;
 }

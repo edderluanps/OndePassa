@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ReadEventComponent } from './read-event.component';
+import { ReadEventComponent } from './event-page.component';
 
 describe('ReadEventComponent', () => {
   let component: ReadEventComponent;

@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { UsuarioService } from '../../services/usuario.service';
-import { Usuario } from '../../models/usuario';
+import { UsuarioService } from '../services/usuario.service';
+import { Usuario } from '../models/usuario';
 import { HttpClientModule } from '@angular/common/http';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -11,13 +11,13 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { ViewChild, AfterViewInit } from '@angular/core';
 
 @Component({
-  selector: 'app-listagem',
+  selector: 'app-usuarios',
   imports: [MatFormFieldModule, MatInputModule, MatTableModule, HttpClientModule, MatIconModule, MatButtonModule, MatPaginatorModule],
-  templateUrl: './listagem.component.html',
-  styleUrls: ['./listagem.component.css'],
+  templateUrl: './usuarios.component.html',
+  styleUrls: ['./usuarios.component.css'],
   providers: [UsuarioService]
 })
-export class ListagemComponent implements OnInit {
+export class UsuariosComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 

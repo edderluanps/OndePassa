@@ -29,6 +29,25 @@
   border: 1px solid var(--light-color);
 }
 
+table.mat-table {
+  width: 100%;
+}
+
+.mat-column-position,
+.mat-column-timeA,
+.mat-column-timeB,
+.mat-column-liga,
+.mat-column-tipoEvento,
+.mat-column-dataEvento,
+.mat-column-actions {
+  flex: 1;
+}
+
+.mat-column-actions{
+  text-align: end; 
+  justify-content: center;
+}
+
 .container .mat-mdc-form-field {
   font-size: 14px;
   width: 100%;
@@ -59,4 +78,9 @@ mat-paginator{
   flex-direction: row;
   justify-content: center;
   border-top: 1px solid var(--light-color);
+}
+
+.align{
+  text-align: end;
+  padding-right: 160px;
 }
