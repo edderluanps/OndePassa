@@ -1,13 +1,20 @@
 package com.lpdev.ondepassa.controller;
 
 import com.lpdev.ondepassa.model.Usuario;
+import com.lpdev.ondepassa.model.dto.UsuarioDTO;
+import com.lpdev.ondepassa.model.dto.UsuarioNewDTO;
 import com.lpdev.ondepassa.service.UsuarioService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/usuario")
@@ -24,9 +31,12 @@ public class UsuarioController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Usuario>>get(){
-        var response = usuarioService.get();
-        return ResponseEntity.ok(response);
+    public ResponseEntity<List<UsuarioDTO>> get() {
+        List<Usuario> usuarios = usuarioService.get();
+        List<UsuarioDTO> usuariosDto = usuarios.stream()
+                .map(UsuarioDTO::new)
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(usuariosDto);
     }
 
     @GetMapping("/paginated")
@@ -37,9 +47,10 @@ public class UsuarioController {
     }
 
     @PostMapping
-    public ResponseEntity<Usuario> post(@RequestBody Usuario usuario){
-        var response = usuarioService.post(usuario);
-        return ResponseEntity.ok(response);
+    public ResponseEntity<Usuario> post(@Valid @RequestBody UsuarioNewDTO usuarioNewDTO) {
+        Usuario usuario = usuarioService.fromDTO(usuarioNewDTO);
+        usuario = usuarioService.post(usuario);
+        return ResponseEntity.ok().body(usuario);
     }
 
     @PutMapping("/{id}")

@@ -24,4 +24,6 @@ public class Usuario implements Serializable {
 
     private String email;
 
+    private String senha;
+
 }

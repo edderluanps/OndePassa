@@ -1,6 +1,8 @@
 package com.lpdev.ondepassa.service;
 
 import com.lpdev.ondepassa.model.Usuario;
+import com.lpdev.ondepassa.model.dto.UsuarioDTO;
+import com.lpdev.ondepassa.model.dto.UsuarioNewDTO;
 import com.lpdev.ondepassa.repository.UsuarioRepository;
 import com.lpdev.ondepassa.service.exceptions.DataIntegrityException;
 import com.lpdev.ondepassa.service.exceptions.ObjectNotFoundException;
@@ -53,6 +55,20 @@ public class UsuarioService {
         }catch(DataIntegrityViolationException ex){
             throw new DataIntegrityException("Não foi possivel deletar: Usuário Ativo.");
         }
+    }
+
+    public Usuario fromDTO(UsuarioDTO usuarioDTO) {
+        return new Usuario(usuarioDTO.getId(), usuarioDTO.getNome(), usuarioDTO.getEmail(), null);
+    }
+
+    public Usuario fromDTO(UsuarioNewDTO usuarioNewDTO){
+        Usuario usuario = new Usuario(null, usuarioNewDTO.getNome(), usuarioNewDTO.getEmail(), usuarioNewDTO.getSenha());
+        return usuario;
+    }
+
+    private void put(Usuario novoUsuario, Usuario usuario) {
+        novoUsuario.setNome(usuario.getNome());
+        novoUsuario.setEmail(usuario.getEmail());
     }
 
 }
