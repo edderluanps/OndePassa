@@ -18,7 +18,7 @@ input.example-right-align {
 .container {
     height: 100%;
     width: 100%;
-    background: #f2f2f2;
+    background: var(--secondary-color);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -27,7 +27,7 @@ input.example-right-align {
 .container .form {
     min-height: 50%;
     width: 40%;
-    background: #f9f9f9;
+    background: var(--light-color);
     border-radius: 10px;
     display: flex;
     flex-direction: column;

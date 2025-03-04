@@ -16,7 +16,7 @@
         [style.display]="accordionItem1.expanded ? '' : 'none'"
         id="accordion-body-1"
         aria-labelledby="accordion-header-1">
-        <a [routerLink]="['/dashboard/data']">Dashboard</a>
+        <a class="menu-sub-item" [routerLink]="['/dashboard/data']"> <mat-icon>space_dashboard</mat-icon> Dashboard</a>
       </div>
     </cdk-accordion-item>
 
@@ -35,7 +35,7 @@
         [style.display]="accordionItem2.expanded ? '' : 'none'"
         id="accordion-body-2"
         aria-labelledby="accordion-header-2">
-        <a [routerLink]="['/dashboard/leagues']">Ligas</a>
+        <a class="menu-sub-item" [routerLink]="['/dashboard/leagues']"> <mat-icon>emoji_events</mat-icon> Ligas</a>
       </div>
 
       <div class="example-accordion-item-body"
@@ -43,7 +43,7 @@
         [style.display]="accordionItem2.expanded ? '' : 'none'"
         id="accordion-body-2"
         aria-labelledby="accordion-header-2">
-        <a [routerLink]="['/dashboard/events']">Eventos</a>
+        <a class="menu-sub-item" [routerLink]="['/dashboard/events']"> <mat-icon>sports_soccer</mat-icon>Eventos</a>
       </div>
 
       <div class="example-accordion-item-body"
@@ -51,7 +51,7 @@
         [style.display]="accordionItem2.expanded ? '' : 'none'"
         id="accordion-body-2"
         aria-labelledby="accordion-header-2">
-        <a [routerLink]="['/dashboard/broadcast']">Transmissões</a>
+        <a class="menu-sub-item" [routerLink]="['/dashboard/broadcast']"> <mat-icon>cell_tower</mat-icon> Transmissões</a>
       </div>
 
       <div class="example-accordion-item-body"
@@ -59,7 +59,7 @@
       [style.display]="accordionItem2.expanded ? '' : 'none'"
       id="accordion-body-2"
       aria-labelledby="accordion-header-2">
-      <a [routerLink]="['/dashboard/listagem-usuarios']">Usuários</a>
+      <a class="menu-sub-item" [routerLink]="['/dashboard/listagem-usuarios']"> <mat-icon>person</mat-icon> Usuários</a>
     </div>
     </cdk-accordion-item>
 
@@ -78,7 +78,7 @@
         [style.display]="accordionItem3.expanded ? '' : 'none'"
         id="accordion-body-3"
         aria-labelledby="accordion-header-3">
-        <a [routerLink]="['/dashboard/']">Login</a>
+        <a class="menu-sub-item" [routerLink]="['/dashboard/']"> <mat-icon>person</mat-icon> Login</a>
       </div>
     </cdk-accordion-item>
   </cdk-accordion>

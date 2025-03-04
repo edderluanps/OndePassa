@@ -20,29 +20,29 @@
 }
 
 .dashboard-panel .cards mat-card-title {
-  color: #f2f2f2;
+  color: var(--light-color);
 }
 
 .dashboard-panel .cards mat-card mat-card-subtitle {
   font-size: 40px;
   margin-top: 30px;
-  color: #f2f2f2;
+  color: var(--light-color);
 }
 
 .dashboard-panel .cards .card-1 {
-  background: #3399ff;
+  background: var(--primary-color);
 }
 
 .dashboard-panel .cards .card-2 {
-  background: #ffcc00;
+  background: var(--warning-color);
 }
 
 .dashboard-panel .cards .card-3 {
-  background: #33cc33;
+  background: var(--success-color);
 }
 
 .dashboard-panel .cards .card-4 {
-  background: #ff0000;
+  background: var(--danger-color);
 }
 
 .dashboard-panel .charts {

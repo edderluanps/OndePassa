@@ -32,7 +32,7 @@ export class BroadcastComponent {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  constructor(private ligaService: TransmissaoService) { }
+  constructor(private transmissaoService: TransmissaoService) { }
 
   ngOnInit(): void {
     this.carregarTransmissoes();
@@ -43,7 +43,7 @@ export class BroadcastComponent {
   }
 
   carregarTransmissoes(): void {
-    this.ligaService.getTransmissoes().subscribe(
+    this.transmissaoService.getTransmissoes().subscribe(
       (data) => {
         this.transmissoes = data;
         this.dataSource.data = this.transmissoes;
@@ -55,7 +55,7 @@ export class BroadcastComponent {
   }
 
   carregarTransmissaoPorId(id: number): void {
-    this.ligaService.getTransmissaoById(id).subscribe(
+    this.transmissaoService.getTransmissaoById(id).subscribe(
       (data) => {
         this.transmissao = data;
       },
@@ -65,15 +65,15 @@ export class BroadcastComponent {
     );
   }
 
-  viewLiga(id: number): void {
+  viewTransmissao(id: number): void {
     console.log('View liga with ID:', id);
   }
 
-  editLiga(id: number): void {
+  editTransmissao(id: number): void {
     console.log('Edit liga with ID:', id);
   }
 
-  deleteLiga(id: number): void {
+  deleteTransmissao(id: number): void {
     console.log('Delete liga with ID:', id);
   }
 }

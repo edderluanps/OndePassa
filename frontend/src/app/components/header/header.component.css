@@ -3,7 +3,7 @@
 }
 
 .mini-perfil{
-  background: #f2f2f2;
+  background: var(--light-color);
   height: 200px;
   width: 200px;
 }
