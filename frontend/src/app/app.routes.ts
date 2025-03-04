@@ -13,6 +13,7 @@ import { FormLeagueComponent } from './leagues/form-league/form-league.component
 import { BroadcastComponent } from './broadcast/broadcast.component';
 import { BroadcastPageComponent } from './broadcast/broadcast-page/broadcast-page.component';
 import { FormBroadcastComponent } from './broadcast/form-broadcast/form-broadcast.component';
+import { ListagemEventosHorariosComponent } from './dashboard/listagem-eventos-horarios/listagem-eventos-horarios.component';
 
 export const routes: Routes = [
     { path: "", component: LoginComponent },
@@ -21,6 +22,7 @@ export const routes: Routes = [
     {
       path: 'dashboard', component: DashboardComponent, children: [
         { path: "", component: DataComponent },
+        { path: "listagem", component: ListagemEventosHorariosComponent },
         { path: 'data', component: DataComponent },
         { path: 'listagem-usuarios', component: UsuariosComponent },
         { path: "events", component: EventsComponent },

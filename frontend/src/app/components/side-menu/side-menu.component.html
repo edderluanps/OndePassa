@@ -16,7 +16,14 @@
         [style.display]="accordionItem1.expanded ? '' : 'none'"
         id="accordion-body-1"
         aria-labelledby="accordion-header-1">
-        <a class="menu-sub-item" [routerLink]="['/dashboard/data']"> <mat-icon>space_dashboard</mat-icon> Dashboard</a>
+        <a class="menu-sub-item" [routerLink]="['/dashboard/data']"> <mat-icon>space_dashboard</mat-icon> Dados</a>
+      </div>
+      <div class="example-accordion-item-body"
+        role="region"
+        [style.display]="accordionItem1.expanded ? '' : 'none'"
+        id="accordion-body-1"
+        aria-labelledby="accordion-header-1">
+        <a class="menu-sub-item" [routerLink]="['/dashboard/listagem']"> <mat-icon>format_list_numbered_rtl</mat-icon> Listagem</a>
       </div>
     </cdk-accordion-item>
 
