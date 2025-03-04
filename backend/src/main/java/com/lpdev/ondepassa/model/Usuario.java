@@ -22,6 +22,7 @@ public class Usuario implements Serializable {
 
     private String nome;
 
+    @Column(unique=true)
     private String email;
 
     private String senha;

@@ -1,5 +1,6 @@
 package com.lpdev.ondepassa.model.dto;
 
+import com.lpdev.ondepassa.service.validation.UsuarioInsert;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
@@ -14,6 +15,7 @@ import java.io.Serializable;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@UsuarioInsert
 public class UsuarioNewDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
