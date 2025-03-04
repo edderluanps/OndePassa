@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -29,6 +30,23 @@ public class LigaService {
     public Page<Liga> getPaginated(int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
         return ligaRepository.findAll(pageable);
+    }
+
+    public List<Liga> findDistinctLocais() {
+        List<String> distinctLocais = ligaRepository.findDistinctLocais();
+        List<Liga> ligaList = new ArrayList<>();
+
+        for (String local : distinctLocais) {
+            Liga liga = ligaRepository.findAll().stream()
+                    .filter(l -> l.getLocal().equals(local))
+                    .findFirst()
+                    .orElse(null);
+            if (liga != null) {
+                ligaList.add(liga);
+            }
+        }
+
+        return ligaList;
     }
 
     public Liga post(Liga liga) {

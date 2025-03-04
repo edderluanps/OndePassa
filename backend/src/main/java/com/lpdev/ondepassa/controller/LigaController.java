@@ -37,6 +37,11 @@ public class LigaController {
         return ResponseEntity.ok(response);
     }
 
+    @GetMapping("/distinct-locais")
+    public List<Liga> getDistinctLocais() {
+        return ligaService.findDistinctLocais();
+    }
+
     @PostMapping
     public ResponseEntity<Liga> post(@Validated @RequestBody Liga liga) {
         var response = ligaService.post(liga);
