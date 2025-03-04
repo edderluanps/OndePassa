@@ -19,4 +19,8 @@ export class EventoService {
     getEventoById(id: number): Observable<Evento> {
       return this.http.get<Evento>(`${this.apiUrl}api/evento/${id}`);
     }
+
+    getEventoByLocal(local: string): Observable<Evento[]> {
+      return this.http.get<Evento[]>(`${this.apiUrl}api/evento/bylocal?local=${local}`);
+    }
 }

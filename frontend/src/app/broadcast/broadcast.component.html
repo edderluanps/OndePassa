@@ -28,11 +28,6 @@
       <td mat-cell *matCellDef="let element">{{ element.canal }}</td>
     </ng-container>
 
-    <ng-container matColumnDef="canalImg">
-      <th mat-header-cell *matHeaderCellDef>Canal IMG</th>
-      <td mat-cell *matCellDef="let element">{{ element.canalImg }}</td>
-    </ng-container>
-
     <ng-container matColumnDef="localidadeTransmissao">
       <th mat-header-cell *matHeaderCellDef>Local transmissão</th>
       <td mat-cell *matCellDef="let element">
@@ -69,7 +64,7 @@
     </tr>
   </table>
   <mat-paginator
-    [pageSizeOptions]="[5, 8, 12]"
+    [pageSizeOptions]="[10, 15, 20]"
     showFirstLastButtons
   ></mat-paginator>
 </div>

@@ -1,5 +1,6 @@
 .container {
-  height: 100vh;
+  min-height: 100vh;
+  height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -55,7 +56,8 @@
 .menu-sub-item {
   color: #000;
   display: flex;
-  justify-content: flex-start;
+  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
   font-size: 15px;
   margin-left: 15px;
@@ -63,13 +65,26 @@
   transition: background-color 0.3s ease;
 }
 
+.menu-sub-item .evento-item {
+  height: 20px;
+  width: 100%;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.menu-sub-item .evento-item span{
+  margin: 0 10px;
+}
+
 .menu-sub-item mat-icon {
   font-size: 22px;
   margin-right: 5px;
 }
 
-.menu-sub-item:hover {
-  background-color: var(--secondary-color);
+.menu-sub-item .evento-item:hover {
   color: var(--info-color);
   cursor: pointer;
   border-radius: 10px;

@@ -19,4 +19,8 @@ export class LigaService {
     getLigaById(id: number): Observable<Liga> {
       return this.http.get<Liga>(`${this.apiUrl}api/liga/${id}`);
     }
+
+    getLigasPaises(): Observable<Liga[]> {
+      return this.http.get<Liga[]>(`${this.apiUrl}api/liga/distinct-locais`);
+    }
 }

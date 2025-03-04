@@ -24,7 +24,7 @@ export class BroadcastComponent {
   transmissoes: Transmissao[] = [];
   transmissao: Transmissao | null = null;
 
-  displayedColumns: string[] = ['position', 'transmissao', 'canal', 'canalImg', 'localidadeTransmissao', 'linkTransmissao', 'evento', 'actions'];
+  displayedColumns: string[] = ['position', 'transmissao', 'canal', 'localidadeTransmissao', 'linkTransmissao', 'evento', 'actions'];
   dataSource = new MatTableDataSource<Transmissao>(this.transmissoes);
 
   applyFilter(event: Event) {
