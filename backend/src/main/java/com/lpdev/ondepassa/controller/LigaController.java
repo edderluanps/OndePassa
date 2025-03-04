@@ -12,7 +12,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/liga")
-@CrossOrigin("*")
 public class LigaController {
 
     @Autowired
