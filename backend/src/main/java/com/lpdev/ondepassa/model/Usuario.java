@@ -1,17 +1,19 @@
 package com.lpdev.ondepassa.model;
 
+import com.lpdev.ondepassa.model.enums.TipoPerfil;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "tbl_usuario")
 @Data
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
 public class Usuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -27,4 +29,27 @@ public class Usuario implements Serializable {
 
     private String senha;
 
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "perfis")
+    private Set<Integer> perfis = new HashSet<>();
+
+    public Usuario() {
+        addPerfis(TipoPerfil.CLIENTE);
+    }
+
+    public Usuario(Long id, String nome, String email, String senha, Set<Integer> perfis) {
+        this.id = id;
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
+        addPerfis(TipoPerfil.CLIENTE);
+    }
+
+    public Set<TipoPerfil> getPerfis() {
+        return perfis.stream().map(obj -> TipoPerfil.toEnum(obj)).collect(Collectors.toSet());
+    }
+
+    public void addPerfis(TipoPerfil perfil) {
+        perfis.add(perfil.getCod());
+    }
 }

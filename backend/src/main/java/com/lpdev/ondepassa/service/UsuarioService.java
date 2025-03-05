@@ -3,7 +3,10 @@ package com.lpdev.ondepassa.service;
 import com.lpdev.ondepassa.model.Usuario;
 import com.lpdev.ondepassa.model.dto.UsuarioDTO;
 import com.lpdev.ondepassa.model.dto.UsuarioNewDTO;
+import com.lpdev.ondepassa.model.enums.TipoPerfil;
 import com.lpdev.ondepassa.repository.UsuarioRepository;
+import com.lpdev.ondepassa.security.UserSS;
+import com.lpdev.ondepassa.service.exceptions.AuthorizationException;
 import com.lpdev.ondepassa.service.exceptions.DataIntegrityException;
 import com.lpdev.ondepassa.service.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +29,10 @@ public class UsuarioService {
     private BCryptPasswordEncoder bpe;
 
     public Usuario get(Long id){
+        UserSS user = UserService.authenticated();
+        if (user == null || !user.hasRole(TipoPerfil.ADMIN) && !id.equals(user.getId())) {
+            throw new AuthorizationException("Acesso negado");
+        }
         return usuarioRepository.findById(id).orElseThrow(()-> new ObjectNotFoundException("Não encontrado"));
     }
 
@@ -63,11 +70,11 @@ public class UsuarioService {
     }
 
     public Usuario fromDTO(UsuarioDTO usuarioDTO) {
-        return new Usuario(usuarioDTO.getId(), usuarioDTO.getNome(), usuarioDTO.getEmail(), null);
+        return new Usuario(usuarioDTO.getId(), usuarioDTO.getNome(), usuarioDTO.getEmail(), null, null);
     }
 
     public Usuario fromDTO(UsuarioNewDTO usuarioNewDTO){
-        Usuario usuario = new Usuario(null, usuarioNewDTO.getNome(), usuarioNewDTO.getEmail(), usuarioNewDTO.getSenha());
+        Usuario usuario = new Usuario(null, usuarioNewDTO.getNome(), usuarioNewDTO.getEmail(), usuarioNewDTO.getSenha(), null);
         return usuario;
     }
 

@@ -5,6 +5,7 @@ import com.lpdev.ondepassa.service.LigaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,6 +42,7 @@ public class LigaController {
         return ligaService.findDistinctLocais();
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     public ResponseEntity<Liga> post(@Validated @RequestBody Liga liga) {
         var response = ligaService.post(liga);

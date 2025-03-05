@@ -8,6 +8,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,6 +27,7 @@ public class UsuarioController {
         return ResponseEntity.ok(response);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping
     public ResponseEntity<List<UsuarioDTO>> get() {
         List<Usuario> usuarios = usuarioService.get();
@@ -35,6 +37,7 @@ public class UsuarioController {
         return ResponseEntity.ok(usuariosDto);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/paginated")
     public ResponseEntity<Page<Usuario>> getPaginated(@RequestParam(defaultValue = "0") int page,
                                                      @RequestParam(defaultValue = "10") int size) {
