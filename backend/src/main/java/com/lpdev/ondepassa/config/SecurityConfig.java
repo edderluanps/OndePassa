@@ -27,7 +27,7 @@ import java.util.List;
 
 
 @Configuration
-@EnableMethodSecurity(prePostEnabled = true) // Substitui @EnableGlobalMethodSecurity
+@EnableMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
 
     private final UserDetailsService userDetailsService;
@@ -41,8 +41,8 @@ public class SecurityConfig {
     private static final String[] PUBLIC_MATCHERS_GET = {
             "/h2-console/**",
             "/api/evento/**",
-            "/api/evento/bylocal",
-            "/api/liga/distinct-locais"
+            "/api/liga/**",
+            "/api/transmissao/**"
     };
 
     private static final String[] PUBLIC_MATCHERS_POST = {
@@ -88,13 +88,9 @@ public class SecurityConfig {
 
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("*"));
-        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        configuration.setAllowedHeaders(List.of("*"));
-        configuration.setAllowCredentials(true);
-
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        CorsConfiguration configuration = new CorsConfiguration().applyPermitDefaultValues();
+        configuration.setAllowedMethods(Arrays.asList("POST", "GET", "PUT", "DELETE", "OPTIONS"));
+        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
     }

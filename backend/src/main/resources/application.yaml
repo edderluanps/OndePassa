@@ -7,4 +7,4 @@ default:
   recipient: ""
 jwt:
   secret: c3VhY2hhbGxvY2Fsa2lqay5hY2thd3F5dGl0YT1wYXNoX1ZhbGlkYXJ2b3Nl
-  expiration: 300000
+  expiration: 43200000

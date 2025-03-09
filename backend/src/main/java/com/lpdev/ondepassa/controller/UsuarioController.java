@@ -22,9 +22,10 @@ public class UsuarioController {
     private UsuarioService usuarioService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<Usuario>get(@PathVariable Long id){
+    public ResponseEntity<UsuarioDTO> get(@PathVariable Long id){
         var response = usuarioService.get(id);
-        return ResponseEntity.ok(response);
+        UsuarioDTO usuarioDTO = new UsuarioDTO(response);
+        return ResponseEntity.ok(usuarioDTO);
     }
 
     @PreAuthorize("hasRole('ADMIN')")
