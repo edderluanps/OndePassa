@@ -18,7 +18,7 @@
     [matMenuTriggerFor]="menu"
     (click)="onNotificationClick()"
   >
-    <mat-icon [matBadge]="badge > 0 ? badge : null" matBadgeColor="warn"
+    <mat-icon [matBadge]="badge > 0 ? badge : null" matBadgeColor="warn" aria-hidden="false"
       >notifications</mat-icon
     >
   </button>

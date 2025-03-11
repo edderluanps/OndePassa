@@ -12,7 +12,7 @@
 
 .example-accordion-item {
   display: block;
-  border-bottom: solid 1px #ccc;
+  border-bottom: solid 1px var(--bg-color-100);
 }
 
 .example-accordion-item + .example-accordion-item {
@@ -28,22 +28,22 @@
   border: none;
   padding: 16px;
   text-align: left;
-  background: #f2f2f2;
+  background: var(--light-color);
 }
 
 .example-accordion-item-description {
   font-size: 0.85em;
-  color: #ccc;
+  color: var(--bg-color-100);
 }
 
 .example-accordion-item-body {
   padding: 16px;
-  background: #f2f2f2;
+  background: var( --bg-color-20);
 }
 
 .example-accordion-item-header:hover {
   cursor: pointer;
-  background-color: #eee;
+  background-color: var(--bg-color-150);
 }
 
 .example-accordion-item:first-child {
@@ -57,14 +57,14 @@
 }
 
 .menu-item{
-  color: #000;
+  color: var(--text-color);
   display: flex;
   justify-content: flex-start;
   align-items: center;
 }
 
 .menu-sub-item{
-  color: #000;
+  color: var(--text-color);
   display: flex;
   justify-content: flex-start;
   align-items: center;

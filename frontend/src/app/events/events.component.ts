@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
@@ -10,17 +10,32 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { ViewChild, AfterViewInit } from '@angular/core';
+import {
+  MatDialog,
+  MatDialogActions,
+  MatDialogClose,
+  MatDialogContent,
+  MatDialogTitle,
+} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-events',
   imports: [CommonModule, MatFormFieldModule, MatInputModule, MatTableModule, HttpClientModule, MatIconModule, MatButtonModule, MatPaginatorModule],
   templateUrl: './events.component.html',
   styleUrls: ['./events.component.css'],
-  providers: [EventoService, DatePipe]
+  providers: [EventoService, DatePipe],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventsComponent {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+
+  readonly dialog = inject(MatDialog);
+
+  openDialog() {
+    this.dialog.open(DialogElementsExampleDialog);
+  }
 
   eventos: Evento[] = [];
   evento: Evento | null = null;
@@ -86,3 +101,12 @@ export class EventsComponent {
   }
 
 }
+
+
+@Component({
+  selector: 'event-mat-dialog',
+  templateUrl: 'event-delete-dialog.html',
+  imports: [MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose, MatButtonModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class DialogElementsExampleDialog {}

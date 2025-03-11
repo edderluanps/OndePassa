@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -9,6 +9,13 @@ import { Transmissao } from '../models/transmissao';
 import { TransmissaoService } from '../services/transmissao.service';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { ViewChild, AfterViewInit } from '@angular/core';
+import {
+  MatDialog,
+  MatDialogActions,
+  MatDialogClose,
+  MatDialogContent,
+  MatDialogTitle,
+} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-broadcast',
@@ -20,6 +27,12 @@ import { ViewChild, AfterViewInit } from '@angular/core';
 export class BroadcastComponent {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+  readonly dialog = inject(MatDialog);
+
+  openDialog() {
+    this.dialog.open(DialogElementsExampleDialog);
+  }
 
   transmissoes: Transmissao[] = [];
   transmissao: Transmissao | null = null;
@@ -76,4 +89,14 @@ export class BroadcastComponent {
   deleteTransmissao(id: number): void {
     console.log('Delete liga with ID:', id);
   }
+}
+
+@Component({
+  selector: 'broadcast-mat-dialog',
+  templateUrl: 'broadcast-delete-dialog.html',
+  imports: [MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose, MatButtonModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class DialogElementsExampleDialog { 
+  
 }

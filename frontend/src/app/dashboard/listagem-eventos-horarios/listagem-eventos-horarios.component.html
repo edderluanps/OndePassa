@@ -17,7 +17,7 @@
         [attr.aria-labelledby]="'accordion-header-' + i">
 
         <div *ngIf="eventosPorPais[pais.local]" class="menu-sub-item">
-          <div *ngFor="let evento of eventosPorPais[pais.local]" class="evento-item">
+          <div *ngFor="let evento of eventosPorPais[pais.local]" class="evento-item" routerLink="/dashboard/event-page">
             <mat-icon>sports_soccer</mat-icon>
             <span>{{ evento.timeA }} x {{ evento.timeB }} </span> -
             <span>{{ evento.liga.nome }}</span> -

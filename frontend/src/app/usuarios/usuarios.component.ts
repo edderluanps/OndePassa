@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, OnInit, Component, inject } from '@angular/core';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -9,6 +9,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { ViewChild, AfterViewInit } from '@angular/core';
+import {
+  MatDialog,
+  MatDialogActions,
+  MatDialogClose,
+  MatDialogContent,
+  MatDialogTitle,
+} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-usuarios',
@@ -20,6 +27,13 @@ import { ViewChild, AfterViewInit } from '@angular/core';
 export class UsuariosComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+  readonly dialog = inject(MatDialog);
+
+  openDialog() {
+    this.dialog.open(DialogElementsExampleDialog);
+  }
+
 
   usuarios: Usuario[] = [];
   usuario: Usuario | null = null;
@@ -77,3 +91,11 @@ export class UsuariosComponent implements OnInit {
     console.log('Delete user with ID:', id);
   }
 }
+
+@Component({
+  selector: 'usuario-mat-dialog',
+  templateUrl: 'usuario-delete-dialog.html',
+  imports: [MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose, MatButtonModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class DialogElementsExampleDialog {}

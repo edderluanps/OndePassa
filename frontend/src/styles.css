@@ -71,7 +71,6 @@ body {
   font-style: italic;
 }
 
-/** Pellete **/
 :root {
   --primary-color: #1e90ff;
   --secondary-color: #ffff;
@@ -83,7 +82,19 @@ body {
   --light-color: #f2f2f2;
 
   --accent-color: #ff6633;
-
-  --background-color: #f2f2f2;
   --text-color: #000;
+  --sub-text-color: #1a1a1a;
+
+  --bg-color-20: #FAF9FD;
+  --bg-color-50: #f6f6f6;
+  --bg-color-100: #ececec;
+  --bg-color-150: #e1e1e1;
+  --bg-color-200: #d0d0d0;
+
+  --surface-color-20: #4e749c;
+  --surface-color-50: #3d5a79;
+  --surface-color-100: #30465E;
+  --surface-color-150: #2e4157;
+  --surface-color-200: #212F3F;
+
 }

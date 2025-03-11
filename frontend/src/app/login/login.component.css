@@ -18,7 +18,7 @@ input.example-right-align {
 .container {
     height: 100%;
     width: 100%;
-    background: var(--secondary-color);
+    background: var(--surface-color-150);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -27,7 +27,7 @@ input.example-right-align {
 .container .form {
     height: 50%;
     width: 40%;
-    background: var(--light-color);
+    background: var(--bg-color-100);
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -42,4 +42,13 @@ input.example-right-align {
 
 .container .form button {
     margin: 5px 0;
+}
+
+.container .form .btn-login{
+    background: var(--primary-color);
+    color: var(--light-color);
+}
+
+.container .form .btn-signup{
+    color: var(--primary-color);
 }

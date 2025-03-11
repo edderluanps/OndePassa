@@ -7,7 +7,7 @@
 }
 
 .dashboard-panel .cards {
-  height: 200px;
+  height: 170px;
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -49,9 +49,27 @@
 .dashboard-panel .charts {
   height: 40%;
   width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.dashboard-panel .charts .graficos{
+  height: 100%;
+  width: 50%;
+  margin: 25px;
 }
 
 .dashboard-panel .tables {
   height: 40%;
+  width: 100%;
+  padding: 25px;
+}
+
+.dashboard-panel .tables  h2{
+  margin-bottom: 20px;
+}
+
+.dashboard-panel .tables table {
   width: 100%;
 }
