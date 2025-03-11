@@ -28,14 +28,17 @@ export const routes: Routes = [
         { path: 'listagem-usuarios', component: UsuariosComponent },
         { path: 'usuario-page', component: UsuarioPageComponent },
         { path: "events", component: EventsComponent },
-        { path: "event-page", component: EventPageComponent },
+        { path: "event-page/:id", component: EventPageComponent },
         { path: "form-event", component: FormEventComponent },
+        { path: "form-event/:id", component: FormEventComponent },
         { path: "leagues", component: LeaguesComponent },
-        { path: "league-page", component: LeaguePageComponent },
+        { path: "league-page/:id", component: LeaguePageComponent },
         { path: "form-league", component: FormLeagueComponent },
+        { path: "form-league/:id", component: FormLeagueComponent },
         { path: "broadcast", component: BroadcastComponent },
-        { path: "broadcast-page", component: BroadcastPageComponent },
-        { path: "form-broadcast", component: FormBroadcastComponent }
+        { path: "broadcast-page/:id", component: BroadcastPageComponent },
+        { path: "form-broadcast", component: FormBroadcastComponent },
+        { path: "form-broadcast/:id", component: FormBroadcastComponent }
       ]
     }
 ];

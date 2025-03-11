@@ -1,8 +1,47 @@
 <div class="container">
-    <div class="league-form">
+  <div class="league-form">
+    <form [formGroup]="formGroup">
+      <h2 class="ubuntu-medium" *ngIf="ligaId == null">Adicionar liga</h2>
+      <h2 class="ubuntu-medium" *ngIf="ligaId != null">Atualizar liga</h2>
 
-        <span></span>
+      <span class="item">
+        <mat-form-field appearance="outline">
+          <mat-label>Nome da liga</mat-label>
+          <input matInput placeholder="Nome da liga" formControlName="nome" />
+        </mat-form-field>
+        <p
+          *ngIf="
+            formGroup.controls['nome'].invalid &&
+            (formGroup.controls['nome'].dirty ||
+              formGroup.controls['nome'].touched)
+          "
+        >
+          <i class="fa-solid fa-circle-exclamation"></i> Valor invalido
+        </p>
+      </span>
 
-    </div>
+      <span class="item">
+        <mat-form-field appearance="outline">
+          <mat-label>Localidade</mat-label>
+          <input matInput placeholder="Localidade" formControlName="local" />
+        </mat-form-field>
+        <p
+          *ngIf="
+            formGroup.controls['local'].invalid &&
+            (formGroup.controls['local'].dirty ||
+              formGroup.controls['local'].touched)
+          "
+        >
+          <i class="fa-solid fa-circle-exclamation"></i> Valor invalido
+        </p>
+      </span>
+
+      <div class="btn-group">
+        <button mat-raised-button *ngIf="formGroup.valid && ligaId == null" class="btn-submit" (click)="onSubmit()">Cadastrar</button>
+        <button mat-raised-button *ngIf="formGroup.valid && ligaId != null" class="btn-submit" (click)="onSubmit()">Atualizar</button>
+        <button mat-raised-button [routerLink]="['/dashboard/leagues']" type="button" class="btn-voltar">Voltar</button>
+      </div>
+
+    </form>
+  </div>
 </div>
-

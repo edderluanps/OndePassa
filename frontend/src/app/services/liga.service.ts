@@ -23,4 +23,16 @@ export class LigaService {
     getLigasPaises(): Observable<Liga[]> {
       return this.http.get<Liga[]>(`${this.apiUrl}api/liga/distinct-locais`);
     }
+
+    postLiga(liga: Liga): Observable<Liga>{
+      return this.http.post<Liga>(`${this.apiUrl}api/liga`, liga);
+    }
+
+    putLiga(id: number, liga: Liga): Observable<Liga> {
+      return this.http.put<Liga>(`${this.apiUrl}api/liga/${id}`, liga);
+    }
+    
+    deleteLiga(id: number): Observable<Liga> {
+      return this.http.delete<Liga>(`${this.apiUrl}api/liga/${id}`);
+    }
 }

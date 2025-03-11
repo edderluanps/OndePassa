@@ -9,7 +9,7 @@
         #input
       />
     </mat-form-field>
-    <button mat-fab extended><mat-icon>add</mat-icon>Novo</button>
+    <button mat-fab extended (click)="addbroadcast()"><mat-icon>add</mat-icon>Novo</button>
   </div>
 
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">

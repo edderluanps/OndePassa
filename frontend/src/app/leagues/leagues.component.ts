@@ -8,7 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { LigaService } from '../services/liga.service';
 import { Liga } from '../models/liga';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { ViewChild, AfterViewInit } from '@angular/core';
+import { ViewChild } from '@angular/core';
 import {
   MatDialog,
   MatDialogActions,
@@ -32,12 +32,12 @@ export class LeaguesComponent {
 
     readonly dialog = inject(MatDialog);
   
-  openDialog() {
+  openDialog(id: number) {
     const dialogRef = this.dialog.open(DialogElementsExampleDialog);
   
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.toastr.success('Item excluído com sucesso!', 'Sucesso');
+        this.deleteLiga(id);
       } else {
         this.toastr.info('Ação cancelada!', 'Aviso');
       }
@@ -74,12 +74,17 @@ export class LeaguesComponent {
         (data) => {
           this.ligas = data;
           this.dataSource.data = this.ligas;
+    
+          if (this.paginator) {
+            this.dataSource.paginator = this.paginator;
+          }
         },
         (error) => {
           console.error('Erro ao carregar ligas:', error);
         }
       );
     }
+    
   
     carregarLigaPorId(id: number): void {
       this.ligaService.getLigaById(id).subscribe(
@@ -91,19 +96,37 @@ export class LeaguesComponent {
         }
       );
     }
+
+    addLiga(){
+      this.router.navigate(['/dashboard/form-league'])
+    }
   
     viewLiga(id: number): void {
-      this.router.navigate(['dashboard/league-page']);
+      this.router.navigate(['dashboard/league-page', id]);
       console.log('View liga with ID:', id);
     }
   
     editLiga(id: number): void {
-      this.router.navigate(['dashboard/form-league']);
-      console.log('Edit liga with ID:', id);
+      this.router.navigate(['dashboard/form-league', id]);
     }
   
     deleteLiga(id: number): void {
-      console.log('Delete liga with ID:', id);
+      this.ligaService.deleteLiga(id).subscribe(
+        () => {
+
+          this.ligas = this.ligas.filter(liga => liga.id !== id);
+          this.dataSource.data = this.ligas;
+          this.toastr.success('Item excluído com sucesso!', 'Sucesso');
+    
+          if (this.paginator) {
+            this.dataSource.paginator = this.paginator;
+          }
+        },
+        (error) => {
+          console.error('Erro ao deletar liga:', error);
+          this.toastr.error('Erro ao excluir liga', 'Erro');
+        }
+      );
     }
 }
 

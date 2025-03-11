@@ -8,7 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { Transmissao } from '../models/transmissao';
 import { TransmissaoService } from '../services/transmissao.service';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { ViewChild, AfterViewInit } from '@angular/core';
+import { ViewChild } from '@angular/core';
 import {
   MatDialog,
   MatDialogActions,
@@ -17,7 +17,7 @@ import {
   MatDialogTitle,
 } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
-import { Router, RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-broadcast',
@@ -92,20 +92,8 @@ export class BroadcastComponent {
     );
   }
 
-  showSuccess() {
-    this.toastr.success('Hello world!', 'Toastr fun!');
-  }
-
-  showError() {
-    this.toastr.error('Hello world!', 'Toastr fun!');
-  }
-
-  showWarn() {
-    this.toastr.warning('Hello world!', 'Toastr fun!');
-  }
-
-  showInfo() {
-    this.toastr.info('Hello world!', 'Toastr fun!');
+  addbroadcast(){
+    this.router.navigate(['dashboard/form-broadcast']);
   }
 
   viewTransmissao(id: number): void {

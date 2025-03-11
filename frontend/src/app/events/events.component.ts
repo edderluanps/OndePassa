@@ -101,6 +101,10 @@ export class EventsComponent {
     );
   }
 
+  addEvento(){
+    this.router.navigate(['dashboard/form-evento']);
+  }
+
   viewEvento(id: number): void {
     this.router.navigate(['dashboard/event-page']);
     console.log('View evento with ID:', id);
@@ -116,7 +120,6 @@ export class EventsComponent {
   }
 
 }
-
 
 @Component({
   selector: 'event-mat-dialog',

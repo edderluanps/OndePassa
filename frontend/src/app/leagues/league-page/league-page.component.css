@@ -5,9 +5,52 @@
   padding: 20px;
 }
 
-.container .league-page {
+.container .league-form {
   height: 88vh;
   width: 100%;
   background: var(--bg-color-50);
   border-radius: 20px;
+}
+
+.container .league-form form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 100px;
+}
+
+.container .league-form form .item{
+  width: 100%;
+  height: auto;
+  padding: 0 100px;
+}
+
+.container .league-form form .item p{
+  font-size: 17px;
+  color: var(--danger-color);
+}
+
+.container .league-form form .item mat-form-field{
+  width: 100%;
+  height: auto;
+  margin-top: 20px;
+}
+
+.container .league-form form .btn-group{
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 0 100px;
+}
+
+.container .league-form form .btn-group button{
+  width: 100%;
+  height: 50px;
+  margin: 10px 0;
+}
+
+.container .league-form form .btn-group .btn-voltar{
+  color: var(--primary-color);
 }

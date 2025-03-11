@@ -1,7 +1,24 @@
 <div class="container">
-    <div class="league-page">
+  <div class="league-form">
+    <form [formGroup]="formGroup">
+      <h2 class="ubuntu-medium">Detalhes da liga</h2>
 
-        <span></span>
+      <span class="item">
+        <mat-form-field appearance="outline">
+          <mat-label>Nome da liga</mat-label>
+          <input matInput placeholder="" [readonly]="true" formControlName="nome" />
+        </mat-form-field>
+      </span>
 
-    </div>
+      <span class="item">
+        <mat-form-field appearance="outline">
+          <mat-label>Localidade</mat-label>
+          <input matInput placeholder="" [readonly]="true" formControlName="local" />
+        </mat-form-field>
+      </span>
+      <div class="btn-group">
+        <button mat-raised-button [routerLink]="['/dashboard/leagues']" type="button" class="btn-voltar">Voltar</button>
+      </div>
+    </form>
+  </div>
 </div>
