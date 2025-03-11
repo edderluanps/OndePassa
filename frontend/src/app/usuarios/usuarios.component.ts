@@ -16,6 +16,8 @@ import {
   MatDialogContent,
   MatDialogTitle,
 } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-usuarios',
@@ -31,9 +33,16 @@ export class UsuariosComponent implements OnInit {
   readonly dialog = inject(MatDialog);
 
   openDialog() {
-    this.dialog.open(DialogElementsExampleDialog);
+    const dialogRef = this.dialog.open(DialogElementsExampleDialog);
+  
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.toastr.success('Item excluído com sucesso!', 'Sucesso');
+      } else {
+        this.toastr.info('Ação cancelada!', 'Aviso');
+      }
+    });
   }
-
 
   usuarios: Usuario[] = [];
   usuario: Usuario | null = null;
@@ -41,7 +50,11 @@ export class UsuariosComponent implements OnInit {
   displayedColumns: string[] = ['position', 'name', 'email', 'actions'];
   dataSource = new MatTableDataSource<Usuario>(this.usuarios);
 
-  constructor(private usuarioService: UsuarioService) { }
+  constructor(
+    private usuarioService: UsuarioService,
+    private toastr: ToastrService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.carregarUsuarios();
@@ -80,6 +93,7 @@ export class UsuariosComponent implements OnInit {
   }
 
   viewUser(id: number): void {
+    this.router.navigate(['dashboard/usuario-page'])
     console.log('View user with ID:', id);
   }
 

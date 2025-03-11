@@ -17,6 +17,8 @@ import {
   MatDialogContent,
   MatDialogTitle,
 } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-events',
@@ -34,7 +36,15 @@ export class EventsComponent {
   readonly dialog = inject(MatDialog);
 
   openDialog() {
-    this.dialog.open(DialogElementsExampleDialog);
+    const dialogRef = this.dialog.open(DialogElementsExampleDialog);
+  
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.toastr.success('Item excluído com sucesso!', 'Sucesso');
+      } else {
+        this.toastr.info('Ação cancelada!', 'Aviso');
+      }
+    });
   }
 
   eventos: Evento[] = [];
@@ -50,7 +60,10 @@ export class EventsComponent {
 
   constructor(
     private datePipe: DatePipe,
-    private eventoService: EventoService
+    private eventoService: EventoService,
+    private toastr: ToastrService,
+    private router: Router
+    
   ) { }
 
   formatDate(dateString: string): string | null {
@@ -89,10 +102,12 @@ export class EventsComponent {
   }
 
   viewEvento(id: number): void {
+    this.router.navigate(['dashboard/event-page']);
     console.log('View evento with ID:', id);
   }
 
   editEvento(id: number): void {
+    this.router.navigate(['dashboard/form-event']);
     console.log('Edit evento with ID:', id);
   }
 

@@ -16,6 +16,8 @@ import {
   MatDialogContent,
   MatDialogTitle,
 } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-leagues',
@@ -30,9 +32,17 @@ export class LeaguesComponent {
 
     readonly dialog = inject(MatDialog);
   
-    openDialog() {
-      this.dialog.open(DialogElementsExampleDialog);
-    }
+  openDialog() {
+    const dialogRef = this.dialog.open(DialogElementsExampleDialog);
+  
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.toastr.success('Item excluído com sucesso!', 'Sucesso');
+      } else {
+        this.toastr.info('Ação cancelada!', 'Aviso');
+      }
+    });
+  }
 
     ligas: Liga[] = [];
     liga: Liga | null = null;
@@ -45,7 +55,11 @@ export class LeaguesComponent {
       this.dataSource.filter = filterValue.trim().toLowerCase();
     }
   
-    constructor( private ligaService: LigaService ) { }
+    constructor(
+      private ligaService: LigaService,
+      private toastr: ToastrService,
+      private router: Router
+    ) { }
   
     ngOnInit(): void { 
       this.carregarLigas();
@@ -79,10 +93,12 @@ export class LeaguesComponent {
     }
   
     viewLiga(id: number): void {
+      this.router.navigate(['dashboard/league-page']);
       console.log('View liga with ID:', id);
     }
   
     editLiga(id: number): void {
+      this.router.navigate(['dashboard/form-league']);
       console.log('Edit liga with ID:', id);
     }
   

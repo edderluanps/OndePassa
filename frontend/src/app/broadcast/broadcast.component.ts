@@ -16,6 +16,8 @@ import {
   MatDialogContent,
   MatDialogTitle,
 } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-broadcast',
@@ -31,9 +33,17 @@ export class BroadcastComponent {
   readonly dialog = inject(MatDialog);
 
   openDialog() {
-    this.dialog.open(DialogElementsExampleDialog);
+    const dialogRef = this.dialog.open(DialogElementsExampleDialog);
+  
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.toastr.success('Item excluído com sucesso!', 'Sucesso');
+      } else {
+        this.toastr.info('Ação cancelada!', 'Aviso');
+      }
+    });
   }
-
+  
   transmissoes: Transmissao[] = [];
   transmissao: Transmissao | null = null;
 
@@ -45,7 +55,11 @@ export class BroadcastComponent {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  constructor(private transmissaoService: TransmissaoService) { }
+  constructor(
+    private transmissaoService: TransmissaoService,
+    private toastr: ToastrService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.carregarTransmissoes();
@@ -78,11 +92,29 @@ export class BroadcastComponent {
     );
   }
 
+  showSuccess() {
+    this.toastr.success('Hello world!', 'Toastr fun!');
+  }
+
+  showError() {
+    this.toastr.error('Hello world!', 'Toastr fun!');
+  }
+
+  showWarn() {
+    this.toastr.warning('Hello world!', 'Toastr fun!');
+  }
+
+  showInfo() {
+    this.toastr.info('Hello world!', 'Toastr fun!');
+  }
+
   viewTransmissao(id: number): void {
+    this.router.navigate(['dashboard/broadcast-page']);
     console.log('View liga with ID:', id);
   }
 
   editTransmissao(id: number): void {
+    this.router.navigate(['dashboard/form-broadcast']);
     console.log('Edit liga with ID:', id);
   }
 
