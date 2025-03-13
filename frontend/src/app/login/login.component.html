@@ -2,12 +2,12 @@
     <div class="form">
           <mat-form-field appearance="outline">
             <mat-label>e-mail</mat-label>
-            <input matInput placeholder="ex: joao@email.com">
+            <input matInput placeholder="ex: joao@email.com" [(ngModel)]="credenciais.email">
           </mat-form-field>
 
           <mat-form-field appearance="outline">
             <mat-label>senha</mat-label>
-            <input matInput [type]="hide() ? 'password' : 'text'" />
+            <input matInput [type]="hide() ? 'password' : 'text'" [(ngModel)]="credenciais.senha"/>
             <button
               mat-icon-button
               matSuffix
@@ -19,7 +19,7 @@
             </button>
           </mat-form-field>
 
-          <button mat-raised-button class="btn-login" (click)="goToDashboard()">Login</button>
+          <button mat-raised-button class="btn-login" (click)="login()">Login</button>
           <button mat-raised-button class="btn-signup" (click)="goToSignup()">Cadastrar</button>
     </div>
 </div>
