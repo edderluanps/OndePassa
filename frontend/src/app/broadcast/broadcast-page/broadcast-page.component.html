@@ -1,8 +1,89 @@
 <div class="container">
-    <div class="broadcast-form">
+  <div class="broadcast-form">
+    <form [formGroup]="formGroup">
+      <h2 class="ubuntu-medium">Detalhes da liga</h2>
 
-        <span></span>
+      <span class="item">
+        <mat-form-field appearance="outline">
+          <mat-label>transmissao</mat-label>
+          <input
+            matInput
+            placeholder=""
+            [readonly]="true"
+            formControlName="transmissao"
+          />
+        </mat-form-field>
+      </span>
 
-    </div>
+      <span class="item">
+        <mat-form-field appearance="outline">
+          <mat-label>canal</mat-label>
+          <input
+            matInput
+            placeholder=""
+            [readonly]="true"
+            formControlName="canal"
+          />
+        </mat-form-field>
+      </span>
+
+      <span class="item">
+        <mat-form-field appearance="outline">
+          <mat-label>canalImg</mat-label>
+          <input
+            matInput
+            placeholder=""
+            [readonly]="true"
+            formControlName="canalImg"
+          />
+        </mat-form-field>
+      </span>
+
+      <span class="item">
+        <mat-form-field appearance="outline">
+          <mat-label>localidadeTransmissao</mat-label>
+          <input
+            matInput
+            placeholder=""
+            [readonly]="true"
+            formControlName="localidadeTransmissao"
+          />
+        </mat-form-field>
+      </span>
+
+      <span class="item">
+        <mat-form-field appearance="outline">
+          <mat-label>linkTransmissao</mat-label>
+          <input
+            matInput
+            placeholder=""
+            [readonly]="true"
+            formControlName="linkTransmissao"
+          />
+        </mat-form-field>
+      </span>
+
+      <span class="item">
+        <mat-form-field appearance="outline">
+          <mat-label>evento</mat-label>
+          <input
+            matInput
+            placeholder=""
+            [readonly]="true"
+            [value]="formGroup.value.evento?.tipoEvento"
+          />
+        </mat-form-field>
+      </span>
+      <div class="btn-group">
+        <button
+          mat-raised-button
+          [routerLink]="['/dashboard/broadcast']"
+          type="button"
+          class="btn-voltar"
+        >
+          Voltar
+        </button>
+      </div>
+    </form>
+  </div>
 </div>
-

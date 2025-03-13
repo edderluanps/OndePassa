@@ -32,12 +32,12 @@ export class BroadcastComponent {
 
   readonly dialog = inject(MatDialog);
 
-  openDialog() {
+  openDialog(id: number) {
     const dialogRef = this.dialog.open(DialogElementsExampleDialog);
   
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.toastr.success('Item excluído com sucesso!', 'Sucesso');
+        this.deleteTransmissao(id);
       } else {
         this.toastr.info('Ação cancelada!', 'Aviso');
       }
@@ -97,17 +97,30 @@ export class BroadcastComponent {
   }
 
   viewTransmissao(id: number): void {
-    this.router.navigate(['dashboard/broadcast-page']);
-    console.log('View liga with ID:', id);
+    this.router.navigate(['dashboard/broadcast-page', id]);
   }
 
   editTransmissao(id: number): void {
-    this.router.navigate(['dashboard/form-broadcast']);
-    console.log('Edit liga with ID:', id);
+    this.router.navigate(['dashboard/form-broadcast', id]);
   }
 
   deleteTransmissao(id: number): void {
-    console.log('Delete liga with ID:', id);
+    this.transmissaoService.deleteTransmissao(id).subscribe(
+      () => {
+
+        this.transmissoes = this.transmissoes.filter(liga => liga.id !== id);
+        this.dataSource.data = this.transmissoes;
+        this.toastr.success('Item excluído com sucesso!', 'Sucesso');
+  
+        if (this.paginator) {
+          this.dataSource.paginator = this.paginator;
+        }
+      },
+      (error) => {
+        console.error('Erro ao deletar transmissão:', error);
+        this.toastr.error('Erro ao excluir transmissão', 'Erro');
+      }
+    );
   }
 }
 

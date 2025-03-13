@@ -8,15 +8,27 @@ import { Transmissao } from '../models/transmissao';
 })
 export class TransmissaoService {
 
-    private apiUrl = 'http://localhost:8080/';
-  
-    constructor(private http: HttpClient) {}
-  
-    getTransmissoes(): Observable<Transmissao[]> {
-      return this.http.get<Transmissao[]>(`${this.apiUrl}api/transmissao`);
-    }
-  
-    getTransmissaoById(id: number): Observable<Transmissao> {
-      return this.http.get<Transmissao>(`${this.apiUrl}api/transmissao/${id}`);
-    }
+  private apiUrl = 'http://localhost:8080/';
+
+  constructor(private http: HttpClient) { }
+
+  getTransmissoes(): Observable<Transmissao[]> {
+    return this.http.get<Transmissao[]>(`${this.apiUrl}api/transmissao`);
+  }
+
+  getTransmissaoById(id: number): Observable<Transmissao> {
+    return this.http.get<Transmissao>(`${this.apiUrl}api/transmissao/${id}`);
+  }
+
+  postTransmissao(transmissao: Transmissao): Observable<Transmissao> {
+    return this.http.post<Transmissao>(`${this.apiUrl}api/transmissao`, transmissao);
+  }
+
+  putTransmissao(id: number, transmissao: Transmissao): Observable<Transmissao> {
+    return this.http.put<Transmissao>(`${this.apiUrl}api/transmissao/${id}`, transmissao);
+  }
+
+  deleteTransmissao(id: number): Observable<Transmissao> {
+    return this.http.delete<Transmissao>(`${this.apiUrl}api/transmissao/${id}`);
+  }
 }

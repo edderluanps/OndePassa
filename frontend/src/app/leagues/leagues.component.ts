@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import {MatTableDataSource, MatTableModule} from '@angular/material/table';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { HttpClientModule } from '@angular/common/http';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -30,7 +30,7 @@ export class LeaguesComponent {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-    readonly dialog = inject(MatDialog);
+  readonly dialog = inject(MatDialog);
   
   openDialog(id: number) {
     const dialogRef = this.dialog.open(DialogElementsExampleDialog);
@@ -85,7 +85,6 @@ export class LeaguesComponent {
       );
     }
     
-  
     carregarLigaPorId(id: number): void {
       this.ligaService.getLigaById(id).subscribe(
         (data) => {
@@ -103,7 +102,6 @@ export class LeaguesComponent {
   
     viewLiga(id: number): void {
       this.router.navigate(['dashboard/league-page', id]);
-      console.log('View liga with ID:', id);
     }
   
     editLiga(id: number): void {

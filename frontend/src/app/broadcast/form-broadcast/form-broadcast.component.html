@@ -1,8 +1,132 @@
 <div class="container">
-    <div class="form-broadcast">
+  <div class="broadcast-form">
+    <form [formGroup]="formGroup">
+      <h2 class="ubuntu-medium">Detalhes da liga</h2>
 
-        <span></span>
+      <span class="item">
+        <mat-form-field appearance="outline">
+          <mat-label>transmissao</mat-label>
+          <input
+            matInput
+            placeholder=""
+            formControlName="transmissao"
+          />
+        </mat-form-field>
+        <p
+          *ngIf="
+            formGroup.controls['transmissao'].invalid &&
+            (formGroup.controls['transmissao'].dirty ||
+              formGroup.controls['transmissao'].touched)
+          "
+        >
+          <i class="fa-solid fa-circle-exclamation"></i> Valor invalido
+        </p>
+      </span>
 
-    </div>
+      <span class="item">
+        <mat-form-field appearance="outline">
+          <mat-label>canal</mat-label>
+          <input
+            matInput
+            placeholder=""
+            formControlName="canal"
+          />
+        </mat-form-field>
+        <p
+          *ngIf="
+            formGroup.controls['canal'].invalid &&
+            (formGroup.controls['canal'].dirty ||
+              formGroup.controls['canal'].touched)
+          "
+        >
+          <i class="fa-solid fa-circle-exclamation"></i> Valor invalido
+        </p>
+      </span>
+
+      <span class="item">
+        <mat-form-field appearance="outline">
+          <mat-label>canalImg</mat-label>
+          <input
+            matInput
+            placeholder=""
+            formControlName="canalImg"
+          />
+        </mat-form-field>
+        <p
+          *ngIf="
+            formGroup.controls['canalImg'].invalid &&
+            (formGroup.controls['canalImg'].dirty ||
+              formGroup.controls['canalImg'].touched)
+          "
+        >
+          <i class="fa-solid fa-circle-exclamation"></i> Valor invalido
+        </p>
+      </span>
+
+      <span class="item">
+        <mat-form-field appearance="outline">
+          <mat-label>localidadeTransmissao</mat-label>
+          <input
+            matInput
+            placeholder=""
+            formControlName="localidadeTransmissao"
+          />
+        </mat-form-field>
+        <p
+          *ngIf="
+            formGroup.controls['localidadeTransmissao'].invalid &&
+            (formGroup.controls['localidadeTransmissao'].dirty ||
+              formGroup.controls['localidadeTransmissao'].touched)
+          "
+        >
+          <i class="fa-solid fa-circle-exclamation"></i> Valor invalido
+        </p>
+      </span>
+
+      <span class="item">
+        <mat-form-field appearance="outline">
+          <mat-label>linkTransmissao</mat-label>
+          <input
+            matInput
+            placeholder=""
+            formControlName="linkTransmissao"
+          />
+        </mat-form-field>
+        <p
+          *ngIf="
+            formGroup.controls['linkTransmissao'].invalid &&
+            (formGroup.controls['linkTransmissao'].dirty ||
+              formGroup.controls['linkTransmissao'].touched)
+          "
+        >
+          <i class="fa-solid fa-circle-exclamation"></i> Valor invalido
+        </p>
+      </span>
+
+      <span class="item">
+        <mat-form-field appearance="outline">
+          <mat-label>Evento</mat-label>
+          <mat-select formControlName="evento">
+            <mat-option *ngFor="let evento of eventos" [value]="evento">
+              {{ evento.tipoEvento }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <p
+          *ngIf="
+            formGroup.controls['evento'].invalid &&
+            (formGroup.controls['evento'].dirty || formGroup.controls['evento'].touched)
+          "
+        >
+          <i class="fa-solid fa-circle-exclamation"></i> Valor inválido
+        </p>
+      </span>    
+      
+      <div class="btn-group">
+        <button mat-raised-button *ngIf="formGroup.valid && transmissaoId == null" class="btn-submit" (click)="onSubmit()">Cadastrar</button>
+        <button mat-raised-button *ngIf="formGroup.valid && transmissaoId != null" class="btn-submit" (click)="onSubmit()">Atualizar</button>
+        <button mat-raised-button [routerLink]="['/dashboard/broadcast']" type="button" class="btn-voltar">Voltar</button>
+      </div>
+    </form>
+  </div>
 </div>
-
