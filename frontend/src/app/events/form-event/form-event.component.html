@@ -1,8 +1,139 @@
 <div class="container">
-    <div class="form-event">
+  <div class="event-form">
+    <form [formGroup]="formGroup">
+      <h2 class="ubuntu-medium" *ngIf="eventoId == null">Adicionar da evento</h2>
+      <h2 class="ubuntu-medium" *ngIf="eventoId != null">Atualizar da evento</h2>
 
-        <span></span>
+      <span class="item">
+        <mat-form-field appearance="outline">
+          <mat-label>Time A</mat-label>
+          <input
+            matInput
+            placeholder=""
+            formControlName="timeA"
+          />
+        </mat-form-field>
+        <p
+          *ngIf="
+            formGroup.controls['timeA'].invalid &&
+            (formGroup.controls['timeA'].dirty ||
+              formGroup.controls['timeA'].touched)
+          "
+        >
+          <i class="fa-solid fa-circle-exclamation"></i> Valor invalido
+        </p>
+      </span>
 
-    </div>
+      <span class="item">
+        <mat-form-field appearance="outline">
+          <mat-label>Time B</mat-label>
+          <input
+            matInput
+            placeholder=""
+            formControlName="timeB"
+          />
+        </mat-form-field>
+        <p
+          *ngIf="
+            formGroup.controls['timeB'].invalid &&
+            (formGroup.controls['timeB'].dirty ||
+              formGroup.controls['timeB'].touched)
+          "
+        >
+          <i class="fa-solid fa-circle-exclamation"></i> Valor invalido
+        </p>
+      </span>
+
+      <span class="item">
+        <mat-form-field appearance="outline">
+            <mat-label>Liga</mat-label>
+            <mat-select formControlName="liga">
+              <mat-option *ngFor="let liga of ligas" [value]="liga.id">
+                {{ liga.nome }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>          
+          
+        <p
+          *ngIf="
+            formGroup.controls['liga'].invalid &&
+            (formGroup.controls['liga'].dirty ||
+              formGroup.controls['liga'].touched)
+          "
+        >
+          <i class="fa-solid fa-circle-exclamation"></i> Valor invalido
+        </p>
+      </span>
+
+      <span class="item">
+        <mat-form-field appearance="outline">
+          <mat-label>Tipo Evento</mat-label>
+          <input
+            matInput
+            placeholder=""
+            formControlName="tipoEvento"
+          />
+        </mat-form-field>
+        <p
+          *ngIf="
+            formGroup.controls['tipoEvento'].invalid &&
+            (formGroup.controls['tipoEvento'].dirty ||
+              formGroup.controls['tipoEvento'].touched)
+          "
+        >
+          <i class="fa-solid fa-circle-exclamation"></i> Valor invalido
+        </p>
+      </span>
+
+      <span class="item">
+        <mat-form-field appearance="outline">
+          <mat-label>Data Evento</mat-label>
+          <input 
+            matInput 
+            [matDatepicker]="picker" 
+            formControlName="dataEvento"
+            [value]="formGroup.value.dataEvento"
+          />
+          <mat-datepicker-toggle matIconSuffix></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <p
+          *ngIf="
+            formGroup.controls['dataEvento'].invalid &&
+            (formGroup.controls['dataEvento'].dirty ||
+              formGroup.controls['dataEvento'].touched)
+          "
+        >
+          <i class="fa-solid fa-circle-exclamation"></i> Valor invalido
+        </p>
+      </span>  
+
+      <div class="btn-group">
+        <button
+          mat-raised-button
+          *ngIf="formGroup.valid && eventoId == null"
+          class="btn-submit"
+          (click)="onSubmit()"
+        >
+          Cadastrar
+        </button>
+        <button
+          mat-raised-button
+          *ngIf="formGroup.valid && eventoId != null"
+          class="btn-submit"
+          (click)="onSubmit()"
+        >
+          Atualizar
+        </button>
+        <button
+          mat-raised-button
+          [routerLink]="['/dashboard/events']"
+          type="button"
+          class="btn-voltar"
+        >
+          Voltar
+        </button>
+      </div>
+    </form>
+  </div>
 </div>
-

@@ -9,7 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { ViewChild, AfterViewInit } from '@angular/core';
+import { ViewChild } from '@angular/core';
 import {
   MatDialog,
   MatDialogActions,
@@ -32,15 +32,14 @@ export class EventsComponent {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-
   readonly dialog = inject(MatDialog);
 
-  openDialog() {
+  openDialog(id: number) {
     const dialogRef = this.dialog.open(DialogElementsExampleDialog);
   
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.toastr.success('Item excluído com sucesso!', 'Sucesso');
+        this.deleteEvento(id);
       } else {
         this.toastr.info('Ação cancelada!', 'Aviso');
       }
@@ -94,6 +93,7 @@ export class EventsComponent {
     this.eventoService.getEventoById(id).subscribe(
       (data) => {
         this.evento = data;
+        console.log(data)
       },
       (error) => {
         console.error('Erro ao carregar evento:', error);
@@ -102,21 +102,34 @@ export class EventsComponent {
   }
 
   addEvento(){
-    this.router.navigate(['dashboard/form-evento']);
+    this.router.navigate(['dashboard/form-event']);
   }
 
   viewEvento(id: number): void {
-    this.router.navigate(['dashboard/event-page']);
-    console.log('View evento with ID:', id);
+    this.router.navigate(['dashboard/event-page', id]);
   }
 
   editEvento(id: number): void {
-    this.router.navigate(['dashboard/form-event']);
-    console.log('Edit evento with ID:', id);
+    this.router.navigate(['dashboard/form-event', id]);
   }
 
   deleteEvento(id: number): void {
-    console.log('Delete evento with ID:', id);
+    this.eventoService.deleteEvento(id).subscribe(
+      () => {
+
+        this.eventos = this.eventos.filter(evento => evento.id !== id);
+        this.dataSource.data = this.eventos;
+        this.toastr.success('Item excluído com sucesso!', 'Sucesso');
+  
+        if (this.paginator) {
+          this.dataSource.paginator = this.paginator;
+        }
+      },
+      (error) => {
+        console.error('Erro ao deletar evento:', error);
+        this.toastr.error('Erro ao excluir evento', 'Erro');
+      }
+    );
   }
 
 }

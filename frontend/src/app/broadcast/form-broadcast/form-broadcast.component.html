@@ -1,7 +1,8 @@
 <div class="container">
   <div class="broadcast-form">
     <form [formGroup]="formGroup">
-      <h2 class="ubuntu-medium">Detalhes da liga</h2>
+      <h2 class="ubuntu-medium" *ngIf="transmissaoId == null">Adicionar transmissão</h2>
+      <h2 class="ubuntu-medium" *ngIf="transmissaoId != null">Atualizar transmissão</h2>
 
       <span class="item">
         <mat-form-field appearance="outline">
@@ -107,8 +108,8 @@
         <mat-form-field appearance="outline">
           <mat-label>Evento</mat-label>
           <mat-select formControlName="evento">
-            <mat-option *ngFor="let evento of eventos" [value]="evento">
-              {{ evento.tipoEvento }}
+            <mat-option *ngFor="let evento of eventos" [value]="evento.id">
+              {{ evento.liga.nome }}
             </mat-option>
           </mat-select>
         </mat-form-field>
@@ -120,7 +121,7 @@
         >
           <i class="fa-solid fa-circle-exclamation"></i> Valor inválido
         </p>
-      </span>    
+      </span>        
       
       <div class="btn-group">
         <button mat-raised-button *ngIf="formGroup.valid && transmissaoId == null" class="btn-submit" (click)="onSubmit()">Cadastrar</button>

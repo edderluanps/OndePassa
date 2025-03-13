@@ -80,7 +80,10 @@ export class FormBroadcastComponent implements OnInit {
   getTransmissaoById(id: number): void {
     this.transmissaoService.getTransmissaoById(id).subscribe(
       (data) => {
-        this.formGroup.patchValue(data);
+        this.formGroup.patchValue({
+          ...data,
+          evento: data.evento ? data.evento.id : null
+        });
       },
       (error) => {
         console.error('Erro ao carregar transmissão:', error);
@@ -97,8 +100,8 @@ export class FormBroadcastComponent implements OnInit {
 
     const transmissaoData = this.formGroup.value;
 
-    if (transmissaoData.evento && transmissaoData.evento.id) {
-      transmissaoData.evento = { id: transmissaoData.evento.id };
+    if (transmissaoData.evento) {
+      transmissaoData.evento = { id: transmissaoData.evento };
     }
 
     if (this.transmissaoId) {
