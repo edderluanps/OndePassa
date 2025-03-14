@@ -20,6 +20,10 @@ monorepo/
 │── README.md     # Documentação do projeto
 ```
 
+## Aplicação Mobile First
+
+A aplicação foi projetada seguindo o conceito de mobile first, garantindo que a melhor experiência seja no aplicativo mobile. O frontend web é voltado principalmente para a administração da plataforma, oferecendo métricas de acesso, monitoramento e sessões que permitem ao administrador modificar e adicionar informações de eventos e usuários. No entanto, o frontend web pode ser utilizado normalmente pelos usuários, caso desejem acessá-lo via navegador.
+
 ## Pré-requisitos
 Certifique-se de ter os seguintes requisitos instalados:
 - **Java 21+**
