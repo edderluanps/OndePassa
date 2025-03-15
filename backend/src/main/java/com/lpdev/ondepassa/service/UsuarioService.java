@@ -40,6 +40,10 @@ public class UsuarioService {
         return usuarioRepository.findAll();
     }
 
+    public Usuario get(String email){
+        return usuarioRepository.findByEmail(email);
+    }
+
     public Page<Usuario> getPaginated(int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
         return usuarioRepository.findAll(pageable);

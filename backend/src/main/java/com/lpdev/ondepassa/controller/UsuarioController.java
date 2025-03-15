@@ -38,6 +38,13 @@ public class UsuarioController {
         return ResponseEntity.ok(usuariosDto);
     }
 
+    @GetMapping("/email")
+    public ResponseEntity<UsuarioDTO> find(@RequestParam(value = "value") String email) {
+        var response = usuarioService.get(email);
+        UsuarioDTO usuarioDTO = new UsuarioDTO(response);
+        return ResponseEntity.ok(usuarioDTO);
+    }
+
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/paginated")
     public ResponseEntity<Page<Usuario>> getPaginated(@RequestParam(defaultValue = "0") int page,

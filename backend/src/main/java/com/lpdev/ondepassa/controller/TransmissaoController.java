@@ -43,4 +43,18 @@ public class TransmissaoController {
         var response = transmissaoService.post(transmissao);
         return ResponseEntity.ok(response);
     }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @PutMapping("/{id}")
+    public ResponseEntity<Void> put(@PathVariable Long id, @RequestBody Transmissao transmissao){
+        transmissaoService.put(transmissao, id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id){
+        transmissaoService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 }

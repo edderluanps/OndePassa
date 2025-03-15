@@ -48,4 +48,18 @@ public class LigaController {
         var response = ligaService.post(liga);
         return ResponseEntity.ok(response);
     }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @PutMapping("/{id}")
+    public ResponseEntity<Void> put(@PathVariable Long id, @RequestBody Liga liga){
+        ligaService.put(liga, id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id){
+        ligaService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 }
