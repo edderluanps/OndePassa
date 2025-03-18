@@ -29,6 +29,8 @@ public class Usuario implements Serializable {
 
     private String senha;
 
+    private String preferencia;
+
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "perfis")
     private Set<Integer> perfis = new HashSet<>();
@@ -37,11 +39,12 @@ public class Usuario implements Serializable {
         addPerfis(TipoPerfil.CLIENTE);
     }
 
-    public Usuario(Long id, String nome, String email, String senha, Set<Integer> perfis) {
+    public Usuario(Long id, String nome, String email, String senha, String preferencia, Set<Integer> perfis) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.senha = senha;
+        this.preferencia = preferencia;
         addPerfis(TipoPerfil.CLIENTE);
     }
 

@@ -1,0 +1,9 @@
+CREATE TABLE IF NOT EXISTS `tbl_evento` (
+  `id` BIGINT NOT NULL AUTO_INCREMENT,
+  `data_evento` DATETIME(6) DEFAULT NULL,
+  `timea` VARCHAR(255) DEFAULT NULL,
+  `timeb` VARCHAR(255) DEFAULT NULL,
+  `tipo_evento` VARCHAR(255) DEFAULT NULL,
+  `liga_id` BIGINT NOT NULL,
+  PRIMARY KEY (`id`)
+);

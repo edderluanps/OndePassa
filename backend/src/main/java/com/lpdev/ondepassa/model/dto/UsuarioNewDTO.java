@@ -31,4 +31,6 @@ public class UsuarioNewDTO implements Serializable {
     @NotEmpty(message = "Preenchimento obrigatório")
     private String senha;
 
+    private String preferencia;
+
 }

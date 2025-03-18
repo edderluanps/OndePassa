@@ -26,6 +26,8 @@ public class UsuarioDTO implements Serializable {
     @Column(unique=true)
     private String email;
 
+    private String preferencia;
+
     public UsuarioDTO(){
     }
 
@@ -33,6 +35,7 @@ public class UsuarioDTO implements Serializable {
         id = usuario.getId();
         nome = usuario.getNome();
         email = usuario.getEmail();
+        preferencia = usuario.getPreferencia();
     }
 
 }

@@ -83,11 +83,11 @@ public class UsuarioService {
     }
 
     public Usuario fromDTO(UsuarioDTO usuarioDTO) {
-        return new Usuario(usuarioDTO.getId(), usuarioDTO.getNome(), usuarioDTO.getEmail(), null, null);
+        return new Usuario(usuarioDTO.getId(), usuarioDTO.getNome(), usuarioDTO.getEmail(), null, usuarioDTO.getPreferencia(), null);
     }
 
     public Usuario fromDTO(UsuarioNewDTO usuarioNewDTO){
-        Usuario usuario = new Usuario(null, usuarioNewDTO.getNome(), usuarioNewDTO.getEmail(), usuarioNewDTO.getSenha(), null);
+        Usuario usuario = new Usuario(null, usuarioNewDTO.getNome(), usuarioNewDTO.getEmail(), usuarioNewDTO.getSenha(), usuarioNewDTO.getPreferencia(), null);
         return usuario;
     }
 
