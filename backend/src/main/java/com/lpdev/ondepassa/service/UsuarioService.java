@@ -40,8 +40,17 @@ public class UsuarioService {
         return usuarioRepository.findAll();
     }
 
-    public Usuario get(String email){
-        return usuarioRepository.findByEmail(email);
+    public Usuario get(String email) {
+        UserSS user = UserService.authenticated();
+        if (user == null || !user.hasRole(TipoPerfil.ADMIN) && !email.equals(user.getUsername())) {
+            throw new AuthorizationException("Acesso negado");
+        }
+
+        Usuario usuario = usuarioRepository.findByEmail(email);
+        if (usuario == null) {
+            throw new ObjectNotFoundException("Usuário não encontrado!");
+        }
+        return usuario;
     }
 
     public Page<Usuario> getPaginated(int page, int size) {

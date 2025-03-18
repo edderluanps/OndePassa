@@ -28,6 +28,7 @@ public class UsuarioController {
         return ResponseEntity.ok(usuarioDTO);
     }
 
+
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping
     public ResponseEntity<List<UsuarioDTO>> get() {
@@ -39,7 +40,7 @@ public class UsuarioController {
     }
 
     @GetMapping("/email")
-    public ResponseEntity<UsuarioDTO> find(@RequestParam(value = "value") String email) {
+    public ResponseEntity<UsuarioDTO> get(@RequestParam(value = "value") String email) {
         var response = usuarioService.get(email);
         UsuarioDTO usuarioDTO = new UsuarioDTO(response);
         return ResponseEntity.ok(usuarioDTO);
