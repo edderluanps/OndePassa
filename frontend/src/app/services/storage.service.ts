@@ -1,28 +1,37 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { STORAGE_KEYS } from '../login/storage_keys.config';
 import { LocalUser } from '../login/local_user';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StorageService {
 
-  constructor() { }
- 
-  getLocalUser() : LocalUser | null{
-    let localUser = localStorage.getItem(STORAGE_KEYS.localUser);
-    if (localUser == null) {
-        return null;
-    } else {
-      return JSON.parse(localUser);
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) { }
+
+  getLocalUser(): LocalUser | any {
+    if (!isPlatformBrowser(this.platformId)) {
+      return null;
+    }
+
+    let userLocal = localStorage.getItem(STORAGE_KEYS.localUser);
+    if (userLocal == null) {
+      return null;
+    }
+    else {
+      return JSON.parse(userLocal);
     }
   }
 
-  setLocalUser(objeto: LocalUser | null): void {
-    if (objeto == null) {
+  setLocalUser(local: LocalUser) {
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
+    if (local == null) {
       localStorage.removeItem(STORAGE_KEYS.localUser);
     } else {
-      localStorage.setItem(STORAGE_KEYS.localUser, JSON.stringify(objeto));
+      localStorage.setItem(STORAGE_KEYS.localUser, JSON.stringify(local));
     }
   }
 }

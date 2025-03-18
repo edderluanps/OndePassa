@@ -1,1 +1,40 @@
-<p>perfil works!</p>
+<div class="container">
+  <div class="perfil">
+    <div class="perfil-info">
+      <h2 class="ubuntu-medium">Perfil</h2>
+
+      <span class="item" *ngIf="usuario">
+        <mat-form-field appearance="outline">
+          <mat-label>Nome</mat-label>
+          <input matInput [(ngModel)]="usuario.nome" />
+        </mat-form-field>
+      </span>
+
+      <span class="item" *ngIf="usuario">
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput [(ngModel)]="usuario.email" />
+        </mat-form-field>
+      </span>
+
+      <span class="item">
+        <mat-form-field appearance="outline">
+          <mat-label>Preferencia</mat-label>
+          <input matInput value="Futebol" />
+        </mat-form-field>
+      </span>
+
+      <div class="btn-group">
+        <button mat-raised-button class="btn-editar">
+          Atualizar Perfil
+        </button>
+        <button mat-raised-button class="btn-logout" (click)="logOut()">
+          Desconectar
+        </button>
+        <button mat-raised-button class="btn-voltar" routerLink="/dashboard">
+          Voltar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -36,15 +36,14 @@ export class LoginComponent {
   }
 
   login() {
-    this.authService.authenticate(this.credenciais).subscribe(response => {
-      this.authService.successfulLogin(response.headers.get('Authorization') || '{}');
-      this.router.navigate(["/dashboard"]);
-      this.toastr.success('Seja bem vind@', 'Sucesso');
-
+    this.authService.authenticate(this.credenciais).subscribe(
+      response => {
+      this.authService.successfulLogin(response.headers.get('Authorization') || '');
+      this.toastr.success("Login efetuado com sucesso!", "Erro ao logar")
+      this.router.navigate(['/dashboard']);
     }, error => {
-      this.toastr.error('Erro ao logar: ' + error, 'Sucesso');
-    });
-
+      this.toastr.error("Erro ao logar: " + error, "Erro ao logar")
+    })
   }
 
   clickEvent(event: MouseEvent) {

@@ -4,10 +4,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatMenuModule } from '@angular/material/menu';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-header',
-  imports: [MatToolbarModule, MatButtonModule, MatIconModule, MatBadgeModule, MatMenuModule],
+  imports: [MatToolbarModule, MatButtonModule, MatIconModule, MatBadgeModule, MatMenuModule, RouterModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })

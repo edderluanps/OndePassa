@@ -15,6 +15,7 @@ import { BroadcastPageComponent } from './broadcast/broadcast-page/broadcast-pag
 import { FormBroadcastComponent } from './broadcast/form-broadcast/form-broadcast.component';
 import { ListagemEventosHorariosComponent } from './dashboard/listagem-eventos-horarios/listagem-eventos-horarios.component';
 import { UsuarioPageComponent } from './usuarios/usuario-page/usuario-page.component';
+import { PerfilComponent } from './usuarios/perfil/perfil.component';
 
 export const routes: Routes = [
     { path: "", component: LoginComponent },
@@ -27,6 +28,7 @@ export const routes: Routes = [
         { path: 'data', component: DataComponent },
         { path: 'listagem-usuarios', component: UsuariosComponent },
         { path: 'usuario-page', component: UsuarioPageComponent },
+        { path: 'perfil', component: PerfilComponent },
         { path: "events", component: EventsComponent },
         { path: "event-page/:id", component: EventPageComponent },
         { path: "form-event", component: FormEventComponent },
