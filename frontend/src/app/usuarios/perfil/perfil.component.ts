@@ -35,8 +35,14 @@ export class PerfilComponent implements OnInit {
       this.usuarioService.getByEmail(localUser.email).subscribe(response => {
         this.usuario = response
       }, error => {
-        this.tostr.error("Erro ao carregar dados de usuário: " + error, "Error")
-      });
+        if (error.status == 403) {
+          this.router.navigate(['/login']);
+          this.tostr.error("Erro ao carregar dados de usuário: " + error, "Error")
+        }
+      }); 
+    }else{
+      this.router.navigate(['/login']);
+      this.tostr.error("Usuário precisa estar logado", "Error")
     }
   }
 
