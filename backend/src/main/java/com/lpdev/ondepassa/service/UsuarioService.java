@@ -22,25 +22,27 @@ import java.util.List;
 @Service
 public class UsuarioService {
 
-    @Autowired
-    private UsuarioRepository usuarioRepository;
+    private final UsuarioRepository usuarioRepository;
+    private final BCryptPasswordEncoder bpe;
 
-    @Autowired
-    private BCryptPasswordEncoder bpe;
+    public UsuarioService(UsuarioRepository usuarioRepository, BCryptPasswordEncoder bpe) {
+        this.usuarioRepository = usuarioRepository;
+        this.bpe = bpe;
+    }
 
     public Usuario get(Long id){
         UserSS user = UserService.authenticated();
         if (user == null || !user.hasRole(TipoPerfil.ADMIN) && !id.equals(user.getId())) {
             throw new AuthorizationException("Acesso negado");
         }
-        return usuarioRepository.findById(id).orElseThrow(()-> new ObjectNotFoundException("Não encontrado"));
+        return usuarioRepository.findById(id).orElseThrow(()-> new ObjectNotFoundException("Usuário não encontrado para o ID: " + id));
     }
 
-    public List<Usuario> get(){
+    public List<Usuario> getAll(){
         return usuarioRepository.findAll();
     }
 
-    public Usuario get(String email) {
+    public Usuario getByEmail(String email) {
         UserSS user = UserService.authenticated();
         if (user == null || !user.hasRole(TipoPerfil.ADMIN) && !email.equals(user.getUsername())) {
             throw new AuthorizationException("Acesso negado");
@@ -48,7 +50,7 @@ public class UsuarioService {
 
         Usuario usuario = usuarioRepository.findByEmail(email);
         if (usuario == null) {
-            throw new ObjectNotFoundException("Usuário não encontrado!");
+            throw new ObjectNotFoundException("Usuario não encontrado para o email: " + email);
         }
         return usuario;
     }
@@ -63,22 +65,24 @@ public class UsuarioService {
         return usuarioRepository.save(usuario);
     }
 
-    public void put(Usuario usuario, Long id){
-        var userToEdit = get(id);
-        if (userToEdit != null){
+    public Usuario put(Usuario usuario, Long id){
+        var usuarioExistente = get(id);
+        if (usuarioExistente != null) {
             usuario.setId(id);
-            usuarioRepository.save(usuario);
+            return usuarioRepository.save(usuario);
         }else{
-            throw new ObjectNotFoundException( "Não encontrado");
+            throw new ObjectNotFoundException("Usuario não encontrado para o ID: " + id);
         }
     }
 
     public void delete(Long id){
-        get(id);
-        try{
+        if (!usuarioRepository.existsById(id)) {
+            throw new ObjectNotFoundException("Usuario não encontrado para o ID: " + id);
+        }
+        try {
             usuarioRepository.deleteById(id);
-        }catch(DataIntegrityViolationException ex){
-            throw new DataIntegrityException("Não foi possivel deletar: Usuário Ativo.");
+        } catch (DataIntegrityViolationException ex) {
+            throw new DataIntegrityException("Não foi possível deletar o Usuario com ID " + id + ": Usuario Ativo.");
         }
     }
 
@@ -91,9 +95,8 @@ public class UsuarioService {
         return usuario;
     }
 
-    private void put(Usuario novoUsuario, Usuario usuario) {
+    private void putDTO(Usuario novoUsuario, Usuario usuario) {
         novoUsuario.setNome(usuario.getNome());
         novoUsuario.setEmail(usuario.getEmail());
     }
-
 }

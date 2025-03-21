@@ -67,7 +67,7 @@ public class UsuarioController {
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping
     public ResponseEntity<List<UsuarioDTO>> get() {
-        List<Usuario> usuarios = usuarioService.get();
+        List<Usuario> usuarios = usuarioService.getAll();
         List<UsuarioDTO> usuariosDto = usuarios.stream()
                 .map(UsuarioDTO::new)
                 .collect(Collectors.toList());
@@ -91,7 +91,7 @@ public class UsuarioController {
             })
     @GetMapping("/email")
     public ResponseEntity<UsuarioDTO> get(@RequestParam(value = "value") String email) {
-        var response = usuarioService.get(email);
+        var response = usuarioService.getByEmail(email);
         UsuarioDTO usuarioDTO = new UsuarioDTO(response);
         return ResponseEntity.ok(usuarioDTO);
     }

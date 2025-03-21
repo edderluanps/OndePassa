@@ -62,7 +62,7 @@ public class EventoController {
             })
     @GetMapping
     public ResponseEntity<List<Evento>> get(){
-        var response = eventoService.get();
+        var response = eventoService.getAll();
         return ResponseEntity.ok(response);
     }
 

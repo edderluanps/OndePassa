@@ -4,7 +4,6 @@ import com.lpdev.ondepassa.model.Transmissao;
 import com.lpdev.ondepassa.repository.TransmissaoRepository;
 import com.lpdev.ondepassa.service.exceptions.DataIntegrityException;
 import com.lpdev.ondepassa.service.exceptions.ObjectNotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -16,15 +15,18 @@ import java.util.List;
 @Service
 public class TransmissaoService {
 
-    @Autowired
-    private TransmissaoRepository transmissaoRepository;
+    private final TransmissaoRepository transmissaoRepository;
+
+    public TransmissaoService(TransmissaoRepository transmissaoRepository) {
+        this.transmissaoRepository = transmissaoRepository;
+    }
 
     public Transmissao get(Long id){
         return transmissaoRepository.findById(id).orElseThrow(
-                ()-> new ObjectNotFoundException("Não foi encontrado"));
+                ()-> new ObjectNotFoundException("Transmissao não encontrada para o ID: " + id));
     }
 
-    public List<Transmissao> get(){
+    public List<Transmissao> getAll(){
         return transmissaoRepository.findAll();
     }
 
@@ -37,22 +39,24 @@ public class TransmissaoService {
         return transmissaoRepository.save(transmissao);
     }
 
-    public void put(Transmissao transmissao, Long id){
-        var eventoToEdit = get(id);
-        if (eventoToEdit != null) {
+    public Transmissao put(Transmissao transmissao, Long id){
+        var transmissaoExistente = get(id);
+        if (transmissaoExistente != null) {
             transmissao.setId(id);
-            transmissaoRepository.save(transmissao);
+            return transmissaoRepository.save(transmissao);
         }else{
-            throw new ObjectNotFoundException("Não foi encontrado");
+            throw new ObjectNotFoundException("Transmissao não encontrada para o ID: " + id);
         }
     }
 
     public void delete(Long id){
-        get(id);
-        try{
+        if (!transmissaoRepository.existsById(id)) {
+            throw new ObjectNotFoundException("Transmissao não encontrada para o ID: " + id);
+        }
+        try {
             transmissaoRepository.deleteById(id);
-        }catch(DataIntegrityViolationException ex){
-            throw new DataIntegrityException("Não foi possivel deletar: Transmissão Ativa.");
+        } catch (DataIntegrityViolationException ex) {
+            throw new DataIntegrityException("Não foi possível deletar a Transmissao com ID " + id + ": Transmissao Ativa.");
         }
     }
 }

@@ -8,7 +8,9 @@ import java.util.List;
 
 public interface LigaRepository extends JpaRepository<Liga, Long> {
 
-    @Query("SELECT DISTINCT l.local FROM Liga l")
-    List<String> findDistinctLocais();
+    boolean existsByNome(String nome);
+
+    @Query("SELECT l FROM Liga l WHERE l.id IN (SELECT MIN(l2.id) FROM Liga l2 GROUP BY l2.local)")
+    List<Liga> findDistinctByLocal();
 
 }

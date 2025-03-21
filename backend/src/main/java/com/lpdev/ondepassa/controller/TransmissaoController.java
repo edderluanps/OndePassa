@@ -62,7 +62,7 @@ public class TransmissaoController {
             })
     @GetMapping
     public ResponseEntity<List<Transmissao>> get(){
-        var response = transmissaoService.get();
+        var response = transmissaoService.getAll();
         return ResponseEntity.ok(response);
     }
 

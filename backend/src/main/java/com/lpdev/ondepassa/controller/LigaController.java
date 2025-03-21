@@ -8,7 +8,6 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -22,8 +21,11 @@ import java.util.List;
 @Tag(name="League", description = "Endpoints for managing Leagues")
 public class LigaController {
 
-    @Autowired
-    private LigaService ligaService;
+    private final LigaService ligaService;
+
+    public LigaController(LigaService ligaService) {
+        this.ligaService = ligaService;
+    }
 
     @Operation(summary = "Find League by ID",
             description = "Find League by ID",
@@ -33,7 +35,7 @@ public class LigaController {
                             content = @Content(schema = @Schema(implementation = Liga.class))
 
                     ),
-                    @ApiResponse(description = "No Content", responseCode = "204", content = @Content),
+                    @ApiResponse(description = "No Content", responseCode = "404", content = @Content),
                     @ApiResponse(description = "Bad Requestt", responseCode = "400", content = @Content),
                     @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
                     @ApiResponse(description = "Not Found", responseCode = "404", content = @Content),
@@ -62,7 +64,7 @@ public class LigaController {
             })
     @GetMapping
     public ResponseEntity<List<Liga>> get(){
-        var response = ligaService.get();
+        var response = ligaService.getAll();
         return ResponseEntity.ok(response);
     }
 
@@ -99,7 +101,7 @@ public class LigaController {
                     @ApiResponse(description = "Internal Server Error", responseCode = "500", content = @Content),
             })
     @GetMapping("/distinct-locais")
-    public List<Liga> getDistinctLocais() {
+    public List<Liga> getDistinctLeaguesByLocal() {
         return ligaService.findDistinctLocais();
     }
 
