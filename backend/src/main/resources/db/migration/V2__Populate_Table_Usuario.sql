@@ -1,4 +1,4 @@
-    INSERT INTO `tbl_usuario` (`id`, `email`, `nome`, `senha`, `preferencia`) VALUES
+    INSERT INTO tbl_usuario (id, email, nome, senha, preferencia) VALUES
     (1, 'teste@email.com', 'José Silva', 'abc123', NULL),
     (2, 'maria@email.com', 'Maria Oliveira', 'abc123', NULL),
     (3, 'carlos@email.com', 'Carlos Santos', 'abc123', NULL),

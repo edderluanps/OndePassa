@@ -1,10 +1,12 @@
-package com.lpdev.ondepassa.service;
+package com.lpdev.ondepassa.unittests.service;
 
 import com.lpdev.ondepassa.model.Usuario;
 import com.lpdev.ondepassa.model.enums.TipoPerfil;
 import com.lpdev.ondepassa.repository.UsuarioRepository;
 import com.lpdev.ondepassa.security.UserSS;
-import com.lpdev.ondepassa.unitetests.mocks.MockUsuario;
+import com.lpdev.ondepassa.service.UserService;
+import com.lpdev.ondepassa.service.UsuarioService;
+import com.lpdev.ondepassa.unittests.mocks.MockUsuario;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

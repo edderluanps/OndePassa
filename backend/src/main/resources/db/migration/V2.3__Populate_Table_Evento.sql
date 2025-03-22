@@ -1,4 +1,4 @@
-INSERT INTO `tbl_evento` (`id`, `data_evento`, `timea`, `timeb`, `tipo_evento`, `liga_id`) VALUES
+INSERT INTO tbl_evento (id, data_evento, timea, timeb, tipo_evento, liga_id) VALUES
 (1, '2025-04-25 00:00:00.000000', 'Charles Oliveira', 'Dustin Poirier', 'MMA', 15),
 (2, '2025-03-10 00:00:00.000000', 'Liverpool', 'Manchester City', 'Futebol', 1),
 (3, '2025-03-15 00:00:00.000000', 'Real Madrid', 'Barcelona', 'Futebol', 3),

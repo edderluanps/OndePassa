@@ -1,4 +1,4 @@
-package com.lpdev.ondepassa.unitetests.mocks;
+package com.lpdev.ondepassa.unittests.mocks;
 
 import com.lpdev.ondepassa.model.Liga;
 

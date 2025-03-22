@@ -1,8 +1,9 @@
-package com.lpdev.ondepassa.service;
+package com.lpdev.ondepassa.unittests.service;
 
 import com.lpdev.ondepassa.model.Transmissao;
 import com.lpdev.ondepassa.repository.TransmissaoRepository;
-import com.lpdev.ondepassa.unitetests.mocks.MockTransmissao;
+import com.lpdev.ondepassa.service.TransmissaoService;
+import com.lpdev.ondepassa.unittests.mocks.MockTransmissao;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

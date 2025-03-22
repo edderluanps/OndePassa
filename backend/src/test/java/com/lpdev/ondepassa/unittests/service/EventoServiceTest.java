@@ -1,9 +1,10 @@
-package com.lpdev.ondepassa.service;
+package com.lpdev.ondepassa.unittests.service;
 
 import com.lpdev.ondepassa.model.Evento;
 import com.lpdev.ondepassa.repository.EventoRepository;
+import com.lpdev.ondepassa.service.EventoService;
 import com.lpdev.ondepassa.service.exceptions.ObjectNotFoundException;
-import com.lpdev.ondepassa.unitetests.mocks.MockEvento;
+import com.lpdev.ondepassa.unittests.mocks.MockEvento;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

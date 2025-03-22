@@ -1,8 +1,9 @@
-package com.lpdev.ondepassa.service;
+package com.lpdev.ondepassa.unittests.service;
 
 import com.lpdev.ondepassa.model.Liga;
 import com.lpdev.ondepassa.repository.LigaRepository;
-import com.lpdev.ondepassa.unitetests.mocks.MockLiga;
+import com.lpdev.ondepassa.service.LigaService;
+import com.lpdev.ondepassa.unittests.mocks.MockLiga;
 import static org.mockito.Mockito.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

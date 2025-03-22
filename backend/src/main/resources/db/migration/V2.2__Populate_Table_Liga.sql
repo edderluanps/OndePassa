@@ -1,4 +1,4 @@
-INSERT INTO `tbl_liga` (`id`, `local`, `nome`) VALUES
+INSERT INTO tbl_liga (id, local, nome) VALUES
 (1, 'Inglaterra', 'Premier League 24/25'),
 (2, 'Inglaterra', 'EFL Championship'),
 (3, 'Espanha', 'La Liga'),
