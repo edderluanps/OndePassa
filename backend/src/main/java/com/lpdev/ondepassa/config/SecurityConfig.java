@@ -40,12 +40,14 @@ public class SecurityConfig {
             "/h2-console/**",
             "/api/evento/**",
             "/api/liga/**",
-            "/api/transmissao/**"
+            "/api/transmissao/**",
+            "/api/logs/**"
     };
 
     private static final String[] PUBLIC_MATCHERS_POST = {
             "/h2-console/**",
-            "/api/usuario"
+            "/api/usuario",
+            "/api/logs/**"
     };
 
     @Bean

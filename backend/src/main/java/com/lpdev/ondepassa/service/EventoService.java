@@ -10,6 +10,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -32,12 +34,51 @@ public class EventoService {
 
     public Evento get(Long id) {
         return eventoRepository.findById(id).orElseThrow(
-                () -> new ObjectNotFoundException("Não foi encontrado"));
+                () -> new ObjectNotFoundException("Evento não encontrado para o ID: " + id));
     }
 
     public Page<Evento> getPaginated(int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
         return eventoRepository.findAll(pageable);
+    }
+
+    public List<Evento> getEventosForToday() {
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        Date startOfDay = calendar.getTime();
+
+        calendar.set(Calendar.HOUR_OF_DAY, 23);
+        calendar.set(Calendar.MINUTE, 59);
+        calendar.set(Calendar.SECOND, 59);
+        Date endOfDay = calendar.getTime();
+
+        return eventoRepository.findEventosByData(startOfDay, endOfDay);
+    }
+
+        public long countEventosForToday() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        Date startOfDay = calendar.getTime();
+
+        calendar.set(Calendar.HOUR_OF_DAY, 23);
+        calendar.set(Calendar.MINUTE, 59);
+        calendar.set(Calendar.SECOND, 59);
+        Date endOfDay = calendar.getTime();
+
+        return eventoRepository.countEventosByData(startOfDay, endOfDay);
+    }
+
+    public long countAllEventos() {
+        return eventoRepository.countAllEventos();
     }
 
     public Evento post(Evento evento) {

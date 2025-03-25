@@ -1,6 +1,7 @@
 package com.lpdev.ondepassa.unittests.service;
 
 import com.lpdev.ondepassa.model.Evento;
+import com.lpdev.ondepassa.model.dto.EventoContagemResponseDTO;
 import com.lpdev.ondepassa.repository.EventoRepository;
 import com.lpdev.ondepassa.service.EventoService;
 import com.lpdev.ondepassa.service.exceptions.ObjectNotFoundException;
@@ -9,6 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -16,6 +18,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -108,6 +112,52 @@ class EventoServiceTest {
 
         assertNotNull(result);
         assertEquals("Team A Test", result.getTimeA());
+    }
+
+    @Test
+    @DisplayName("Deve retornar os eventos com a contagem correta para o dia de hoje")
+    void getEventosForToday() {
+        List<Evento> eventos = input.mockEntityList();
+        when(eventoRepository.findEventosByData(any(Date.class), any(Date.class))).thenReturn(eventos);
+
+        var result = eventoService.getEventosForToday();
+
+        assertNotNull(result);
+        assertEquals(20, result.size());
+        verify(eventoRepository, times(1)).findEventosByData(any(Date.class), any(Date.class));
+    }
+
+    @Test
+    @DisplayName("Deve contar os eventos conforme o dia de hoje")
+    void countEventosForToday() {
+        when(eventoRepository.countEventosByData(any(Date.class), any(Date.class))).thenReturn(20L);
+
+        long result = eventoService.countEventosForToday();
+
+        assertEquals(20L, result);
+        verify(eventoRepository, times(1)).countEventosByData(any(Date.class), any(Date.class));
+    }
+
+    @Test
+    @DisplayName("Deve retornar a contagem no formato DTO para o dia de hoje")
+    void countEventosForToday_DTO() {
+        when(eventoRepository.countEventosByData(any(Date.class), any(Date.class))).thenReturn(20L);
+
+        EventoContagemResponseDTO result = new EventoContagemResponseDTO(eventoService.countEventosForToday());
+
+        assertNotNull(result);
+        assertEquals(20L, result.getContagem());
+    }
+
+    @Test
+    @DisplayName("Deve contar todos os Eventos")
+    void countAllEventos() {
+        when(eventoRepository.countAllEventos()).thenReturn(100L);
+
+        long result = eventoService.countAllEventos();
+
+        assertEquals(100L, result);
+        verify(eventoRepository, times(1)).countAllEventos();
     }
 
     @Test
