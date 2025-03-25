@@ -11,6 +11,7 @@ import { LigaService } from '../../services/liga.service';
 import { HttpClientModule } from '@angular/common/http';
 import { EventoService } from '../../services/evento.service';
 import { Evento } from '../../models/evento';
+import { AccessLogService } from '../../services/access-log.service';
 
 @Component({
   selector: 'app-listagem-eventos-horarios',
@@ -29,11 +30,13 @@ export class ListagemEventosHorariosComponent {
   
   constructor(
     private ligaService: LigaService,
-    private eventoService: EventoService
+    private eventoService: EventoService,
+    private accessLogService: AccessLogService
   ) { }
 
   ngOnInit(): void {
     this.carregarLigasPorPais();
+    this.registrarLog();
   }
 
   carregarLigasPorPais(): void {
@@ -59,5 +62,11 @@ export class ListagemEventosHorariosComponent {
         console.error('Erro ao carregar eventos:', error);
       }
     );
+  }
+
+  registrarLog(){
+    this.accessLogService.logAccess().subscribe(res => {
+      res = res
+    });
   }
 }

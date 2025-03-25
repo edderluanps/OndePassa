@@ -4,12 +4,14 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatCardModule } from '@angular/material/card';
 import { EventoService } from '../../services/evento.service';
 import { ToastrService } from 'ngx-toastr';
+import { AccessLogService } from '../../services/access-log.service';
 
 @Component({
   selector: 'app-data',
   imports: [MatSidenavModule, MatButtonModule, MatCardModule],
   templateUrl: './data.component.html',
-  styleUrl: './data.component.css'
+  styleUrl: './data.component.css',
+  providers: [EventoService, AccessLogService]
 })
 export class DataComponent implements OnInit {
   
@@ -20,6 +22,7 @@ export class DataComponent implements OnInit {
 
   constructor(
     private eventoService: EventoService,
+    private accessLogService: AccessLogService,
     public toastr: ToastrService
   ) {}
 
@@ -39,5 +42,19 @@ export class DataComponent implements OnInit {
     }, error => {
       this.toastr.error("Erro ao carregar valores: "+ error, "Erro");
     });
+
+    this.accessLogService.getContagemAcessosDoDia().subscribe(response => {
+      this.todayAccess = response.contagem;
+    }, error => {
+      this.toastr.error("Erro ao carregar valores: "+ error, "Erro");
+    });
+
+    this.accessLogService.getContagemTotalAcessos().subscribe(response => {
+      this.allAccess = response.contagem;
+    }, error => {
+      this.toastr.error("Erro ao carregar valores: "+ error, "Erro");
+    });
+
+
   }
 }

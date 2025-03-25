@@ -17,7 +17,7 @@ export class ErrorInterceptor implements HttpInterceptor {
         return next.handle(req).pipe(
             catchError((error: HttpErrorResponse) => {
                 let errorMsg = 'Erro:' + error;
-                if (error.error instanceof ErrorEvent) {
+                if (typeof ErrorEvent !== 'undefined' && error.error instanceof ErrorEvent) { 
                     this.toastr.error('Erro no Client: ' + error.message, "Erro");
                     errorMsg = `Error: ${error.error.message}`;
                 }
@@ -45,7 +45,7 @@ export class ErrorInterceptor implements HttpInterceptor {
     }
 
     handle401() {
-        alert('Login e senha incorretos');
+        this.toastr.error('Login e senha incorretos');
     }
 
     handle403() {
@@ -57,7 +57,7 @@ export class ErrorInterceptor implements HttpInterceptor {
     }
 
     handleDefaultError(errorMsg: any) {
-        alert('404: ' + errorMsg.status);
+        this.toastr.error('404: ' + errorMsg);
     }
 }
 
