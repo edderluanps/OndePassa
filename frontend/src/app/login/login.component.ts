@@ -39,7 +39,7 @@ export class LoginComponent {
     this.authService.authenticate(this.credenciais).subscribe(
       response => {
       this.authService.successfulLogin(response.headers.get('Authorization') || '');
-      this.toastr.success("Login efetuado com sucesso!", "Erro ao logar")
+      this.toastr.success("Login efetuado com sucesso!", "login autorizado")
       this.router.navigate(['/dashboard']);
     }, error => {
       this.toastr.error("Erro ao logar: " + error, "Erro ao logar")

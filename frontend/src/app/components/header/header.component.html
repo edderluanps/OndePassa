@@ -43,8 +43,9 @@
 </mat-menu>
 
 <mat-menu #perfil="matMenu" xPosition="before" class="mat-menu-perfil">
-  <div mat-menu-item class="mini-perfil">
-
+  <div class="mini-perfil">
+    <img src="https://static-00.iconduck.com/assets.00/profile-default-icon-2048x2045-u3j7s5nj.png" alt="Imagem de usuário" />
+    <p>Olá, {{ usuario?.nome }}</p>
   </div>
   <button mat-menu-item class="btn-perfil" routerLink="/dashboard/perfil">
     <mat-icon>assignment_ind</mat-icon>

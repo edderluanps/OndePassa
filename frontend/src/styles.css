@@ -21,7 +21,9 @@ body {
 
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: "Ubuntu", serif;
+  font-weight: 500;
+  font-style: normal;
 }
 
 .ubuntu-light {

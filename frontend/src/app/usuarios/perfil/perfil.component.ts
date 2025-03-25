@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { StorageService } from '../../services/storage.service';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -10,6 +10,7 @@ import { UsuarioDTO } from '../../models/usuario.dto';
 import { AuthService } from '../../services/auth.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgIf } from '@angular/common';
+import { MatDialog, MatDialogActions, MatDialogClose, MatDialogContent, MatDialogTitle } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-perfil',
@@ -19,11 +20,25 @@ import { NgIf } from '@angular/common';
 })
 export class PerfilComponent implements OnInit {
 
+  readonly dialog = inject(MatDialog);
+
+  openDialog() {
+    const dialogRef = this.dialog.open(DialogElementsExampleDialog);
+  
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.logOut();
+      } else {
+        this.toastr.info('Ação cancelada!', 'Aviso');
+      }
+    });
+  }
+
   usuario?: UsuarioDTO;
 
   constructor(
     public storageService: StorageService,
-    public tostr: ToastrService,
+    public toastr: ToastrService,
     private router: Router,
     public usuarioService: UsuarioService,
     public authService: AuthService
@@ -37,19 +52,27 @@ export class PerfilComponent implements OnInit {
       }, error => {
         if (error.status == 403) {
           this.router.navigate(['/login']);
-          this.tostr.error("Erro ao carregar dados de usuário: " + error, "Error")
+          this.toastr.error("Erro ao carregar dados de usuário: " + error, "Error")
         }
       }); 
     }else{
       this.router.navigate(['/login']);
-      this.tostr.error("Usuário precisa estar logado", "Error")
+      this.toastr.error("Usuário precisa estar logado", "Error")
     }
   }
 
   logOut() {
     this.authService.logOut();
     this.router.navigate(['/login'])
-    this.tostr.success("Desconectado com sucesso!", "Desconectado")
+    this.toastr.success("Desconectado com sucesso!", "Desconectado")
   }
 
 }
+
+@Component({
+  selector: 'perfil-mat-dialog',
+  templateUrl: 'perfil-logout-dialog.html',
+  imports: [MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose, MatButtonModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class DialogElementsExampleDialog {}

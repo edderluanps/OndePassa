@@ -38,6 +38,10 @@
   background: var(--warning-color);
 }
 
+.dashboard-panel .cards .card-2 :is(mat-card-title, mat-card-subtitle) {
+  color: var(--text-color);
+}
+
 .dashboard-panel .cards .card-3 {
   background: var(--success-color);
 }

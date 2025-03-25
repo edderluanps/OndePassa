@@ -11,10 +11,29 @@ mat-icon{
   flex: 1 1 auto;
 }
 
-.mini-perfil{
+.mini-perfil {
   background: var(--light-color);
-  height: 200px;
+  height: auto;
   width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.mini-perfil img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.mini-perfil p {
+  font-size: 14px;
+  color: var(--text-color);
+  margin: 0;
 }
 
 .btn-perfil{
