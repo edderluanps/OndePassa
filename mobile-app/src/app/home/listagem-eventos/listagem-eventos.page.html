@@ -33,44 +33,29 @@
   </ion-header>
   <ion-content class="listagem">
     <strong class="title"> <ion-icon name="calendar-clear"></ion-icon> Eventos em {{ currentDate }}</strong>
-      
-    <ion-list class="itens">
-
-        <ion-item button (click)="toggleDropdown(1)">
-          <ion-icon name="football-outline" id="icon"></ion-icon>
-          <ion-label><strong>England Premier League</strong></ion-label>
-          <ion-icon slot="end" [name]="isDropdownOpen(1) ? 'chevron-up-outline' : 'chevron-down-outline'"></ion-icon>
-        </ion-item>
-
-        <ion-list *ngIf="isDropdownOpen(1)">
-          <ion-item (click)="goToEvent()">Detalhe do Evento 1</ion-item>
-          <ion-item (click)="goToEvent()">Detalhe do Evento 2</ion-item>
-        </ion-list>
-      
-        <ion-item button (click)="toggleDropdown(2)">
-          <ion-icon name="football-outline" id="icon"></ion-icon>
-          <ion-label><strong>Italian Serie A Tim</strong></ion-label>
-          <ion-icon slot="end" [name]="isDropdownOpen(2) ? 'chevron-up-outline' : 'chevron-down-outline'"></ion-icon>
-        </ion-item>
+    
+    <ion-accordion-group>
+      <ion-accordion *ngFor="let pais of ligas; let i = index" [value]="'accordion-' + i">
         
-        <ion-list *ngIf="isDropdownOpen(2)">
-          <ion-item>Detalhe do Evento 3</ion-item>
-          <ion-item>Detalhe do Evento 4</ion-item>
-        </ion-list>
-      
-        <ion-item button (click)="toggleDropdown(3)">
-          <ion-icon name="football-outline" id="icon"></ion-icon>
-          <ion-label><strong>Spain LaLiga</strong></ion-label>
-          <ion-icon slot="end" [name]="isDropdownOpen(3) ? 'chevron-up-outline' : 'chevron-down-outline'"></ion-icon>
+        <ion-item slot="header">
+          <ion-label><strong>{{ pais.local }}</strong></ion-label>
         </ion-item>
-        
-        <ion-list *ngIf="isDropdownOpen(3)">
-          <ion-item>Detalhe do Evento 5</ion-item>
-          <ion-item>Detalhe do Evento 6</ion-item>
-        </ion-list>
 
-      </ion-list>
-      
+        <div slot="content" *ngIf="eventosPorPais[pais.local]" class="content">
+          <ion-list>
+            <ion-item *ngFor="let evento of eventosPorPais[pais.local]" class="items">
+              <ion-label class="slot-info">
+                <ion-icon name="football-outline" id="icon"></ion-icon>
+                <span>{{ evento.timeA }} x {{ evento.timeB }}</span> -
+                <span>{{ evento.liga.nome }}</span> -
+                <span>{{ evento.dataEvento | date: 'dd/MM/yyyy' }}</span>
+              </ion-label>
+            </ion-item>
+          </ion-list>
+        </div>
+
+      </ion-accordion>
+    </ion-accordion-group>
   </ion-content>
 </div>
 
