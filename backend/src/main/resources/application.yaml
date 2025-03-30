@@ -2,7 +2,7 @@ spring:
   application:
     name: ondepassa
   profiles:
-    active: ${APP_PROFILE:dev}
+    active: ${APP_PROFILE:prd}
 default:
   recipient: ""
 jwt:
