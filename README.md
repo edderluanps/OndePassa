@@ -1,5 +1,7 @@
 # OndePassa
 
+[![CI/CD Github Actions](https://github.com/edderluanps/OndePassa/actions/workflows/continuous-deployment.yml/badge.svg?branch=main)](https://github.com/edderluanps/OndePassa/actions/workflows/continuous-deployment.yml)
+
 ## Descrição
 Uma aplicação full-stack desenvolvida com Java Spring Boot, Angular e Ionic, projetada para fornecer uma solução de indicação de eventos e transmissões esportivas em multiplos serviços de streaming. O projeto segue uma estrutura monorepo, integrando backend, frontend e aplicação mobile híbrida.
 
